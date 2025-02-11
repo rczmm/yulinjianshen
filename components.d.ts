@@ -7,13 +7,12 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    NutButton: typeof import('@nutui/nutui-taro')['Button']
-    NutCard: typeof import('@nutui/nutui-taro')['Card']
+    NutAvatar: typeof import('@nutui/nutui-taro')['Avatar']
+    NutCell: typeof import('@nutui/nutui-taro')['Cell']
     NutDivider: typeof import('@nutui/nutui-taro')['Divider']
     NutGrid: typeof import('@nutui/nutui-taro')['Grid']
     NutGridItem: typeof import('@nutui/nutui-taro')['GridItem']
-    NutIcon: typeof import('@nutui/nutui-taro')['Icon']
     NutSearchbar: typeof import('@nutui/nutui-taro')['Searchbar']
-    NutToast: typeof import('@nutui/nutui-taro')['Toast']
+    RCard: typeof import('./src/components/RCard/RCard.vue')['default']
   }
 }
