@@ -8,7 +8,7 @@
 
       <view class="list-container">
         <view class="list-item" v-for="(item, index) in listData" :key="index">
-          <image class="item-image" :src="item.image" mode="aspectFill" />
+          <image class="item-image" :src="item.image" mode="aspectFill"/>
           <view class="item-info">
             <text class="item-title">{{ item.title }}</text>
             <view class="item-details">
@@ -19,7 +19,9 @@
           </view>
         </view>
         <view class="view-more-button" v-if="listData.length > 0">
-          <button class="button-text">查看更多</button>
+          <view class="button-text" @click="navToTopic(title)">
+            <text class="button-text-content">查看更多</text>
+          </view>
         </view>
       </view>
     </view>
@@ -27,9 +29,15 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import {defineProps} from 'vue';
 import './RCard.scss';
+import Taro from '@tarojs/taro';
 
+const navToTopic = (title) => {
+  Taro.navigateTo({
+    url: `/pages/topic/index?title=${title}`,
+  });
+};
 
 const props = defineProps({
   backgroundImage: String,
