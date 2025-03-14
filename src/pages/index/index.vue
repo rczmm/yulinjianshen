@@ -20,6 +20,8 @@
           />
         </nut-avatar>
       </nut-grid-item>
+
+
     </nut-grid>
 
     <nut-divider></nut-divider>
