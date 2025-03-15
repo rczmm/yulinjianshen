@@ -13,15 +13,11 @@
     </nut-swiper>
 
     <nut-grid :column-num="5">
-      <nut-grid-item v-for="(item, index) in gridList" :key="index" :text="item.text">
+      <nut-grid-item v-for="(item, index) in gridList" :key="index" :text="item.text" @click="navToPage(item.text)">
         <nut-avatar size="small">
-          <image
-            :src="item.icon" style="object-fit: fill;"
-          />
+          <image :src="item.icon" style="object-fit: fill;"/>
         </nut-avatar>
       </nut-grid-item>
-
-
     </nut-grid>
 
     <nut-divider></nut-divider>
@@ -60,7 +56,6 @@
 
     <nut-divider></nut-divider>
 
-
     <RCard
       backgroundImage="https://i0.hdslb.com/bfs/archive/dc71302802b7e99320a9f04414536849325853d8.jpg"
       title="上班族醒脑提神"
@@ -93,6 +88,7 @@
 import {ref} from 'vue'
 import RCard from "../../components/RCard/RCard.vue";
 import './index.scss';
+import Taro from "@tarojs/taro";
 
 const swiperList = ref([
   "https://i0.hdslb.com/bfs/archive/8ddfbb4ba58b32e1c3eed0fd8d771c90f804272e.jpg@672w_378h_1c_!web-search-common-cover.avif",
@@ -211,6 +207,22 @@ const cardListData = ref([
   }
 ]);
 
+const navToPage = (text) => {
+  if (text === '课程专题') {
+    Taro.navigateTo({
+      url: '/pages/topic/list'
+    })
+  } else if (text === '金牌服务') {
+    Taro.navigateTo({
+      url: '/pages/services/index'
+    })
+  } else if (text === '找教练') {
+    Taro.navigateTo({
+      url: '/pages/teacher/list'
+    })
+  }
+
+};
 
 </script>
 

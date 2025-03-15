@@ -5,6 +5,10 @@ export default {
     'pages/topic/index',
     'pages/course/index',
     'pages/comment/index',
+    'pages/topic/list',
+    'pages/services/index',
+    'pages/teacher/list',
+    'pages/teacher/index',
   ],
   window: {
     backgroundTextStyle: 'light',
