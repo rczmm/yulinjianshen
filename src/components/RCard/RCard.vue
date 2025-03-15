@@ -31,13 +31,7 @@
 <script setup>
 import { defineProps } from 'vue';
 import './RCard.scss';
-import Taro from '@tarojs/taro';
 
-const navToTopic = (title) => {
-  Taro.navigateTo({
-    url: `/pages/topic/index?title=${title}`,
-  });
-};
 
 const props = defineProps({
   backgroundImage: String,
