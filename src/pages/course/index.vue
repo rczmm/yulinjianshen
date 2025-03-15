@@ -102,7 +102,7 @@
         </view>
       </view>
       <view class="comment-more">
-        <nut-cell title="查看更多课程评论" desc=">"></nut-cell>
+        <nut-cell title="查看更多课程评论" desc=">" @click="navToMoreComment(id)"></nut-cell>
       </view>
     </view>
     <view class="add-course">
@@ -118,6 +118,7 @@ import Taro from "@tarojs/taro";
 const backgroundImage = ref<string>('');
 const title = ref<string>('');
 const desc = ref<string>('');
+const id = ref<string>('');
 
 const time = ref<string>('');
 const energy = ref<string>('');
@@ -130,6 +131,12 @@ const index = ref<number>(0);
 
 const actionList = ref<any[]>([]);
 const commentList = ref<any[]>([]);
+
+const navToMoreComment = (id: string) => {
+  Taro.navigateTo({
+    url: `/pages/comment/index?id=${id}`
+  })
+}
 
 onMounted(() => {
   const currentInstance = Taro.getCurrentInstance();
@@ -212,7 +219,8 @@ onMounted(() => {
               "https://i0.hdslb.com/bfs/archive/773907c94bd341db33a17d6917adaead52e5b09b.jpg@672w_378h_1c_!web-search-common-cover.avif",
             num: 10
           }
-        ]
+        ];
+        id.value = "1";
       }
     })
   }

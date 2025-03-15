@@ -3,7 +3,8 @@ export default {
     'pages/index/index',
     'pages/my/index',
     'pages/topic/index',
-    'pages/course/index'
+    'pages/course/index',
+    'pages/comment/index',
   ],
   window: {
     backgroundTextStyle: 'light',
