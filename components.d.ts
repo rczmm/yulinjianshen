@@ -13,7 +13,6 @@ declare module 'vue' {
     NutDivider: typeof import('@nutui/nutui-taro')['Divider']
     NutGrid: typeof import('@nutui/nutui-taro')['Grid']
     NutGridItem: typeof import('@nutui/nutui-taro')['GridItem']
-    NutIcon: typeof import('@nutui/nutui-taro')['Icon']
     NutSearchbar: typeof import('@nutui/nutui-taro')['Searchbar']
     NutSwiper: typeof import('@nutui/nutui-taro')['Swiper']
     NutSwiperItem: typeof import('@nutui/nutui-taro')['SwiperItem']

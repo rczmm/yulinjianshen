@@ -63,6 +63,17 @@ export default defineConfig<'webpack5'>(async (merge, {command, mode}) => {
           config: {
             additionalData: require('sass')
           }
+        },
+        import: {
+          enable: true,
+          config: {
+            // 配置postcss-import插件，添加对node_modules的支持
+            resolve: (id) => {
+              if (id.startsWith('@nutui/')) {
+                return id
+              }
+            }
+          }
         }
       },
       webpackChain(chain) {
