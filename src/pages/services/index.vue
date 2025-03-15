@@ -3,7 +3,7 @@
     <text>教练团队</text>
 
     <view class="teacher-list">
-      <view class="teacher-item" v-for="(item, index) in teacherList" :key="index">
+      <view class="teacher-item" v-for="(item, index) in teacherList" :key="index" @click="navToTeacher(item.id)">
         <nut-avatar size="large" :src="item.img"></nut-avatar>
         <text>{{ item.nickName }}</text>
       </view>
@@ -41,6 +41,11 @@ import Taro from "@tarojs/taro";
 
 const teacherList = ref<any[]>([]);
 
+const navToTeacher = (id: string) => {
+  Taro.navigateTo({
+    url: `/pages/teacher/index?id=${id}`
+  })
+}
 
 onMounted(
   () => {
