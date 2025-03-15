@@ -187,6 +187,7 @@ const recommendList = ref([
 
 const cardListData = ref([
   {
+    id: '1',
     image: 'https://i1.hdslb.com/bfs/archive/cb398a597840785835f2eb608389f0c5146bb864.jpg',
     title: '列表项标题1',
     time: '时间1',
@@ -194,12 +195,14 @@ const cardListData = ref([
     level: '等级1',
   },
   {
+    id: '2',
     image: 'https://i1.hdslb.com/bfs/archive/cb398a597840785835f2eb608389f0c5146bb864.jpg',
     title: '列表项标题2',
     time: '时间2',
     energy: '能量2',
     level: '等级2',
   }, {
+    id: '3',
     image: 'https://i2.hdslb.com/bfs/archive/08ff6bb05cb9cf028206691174f2d4125c3a9321.jpg',
     title: '列表项标题2',
     time: '时间2',

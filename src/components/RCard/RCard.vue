@@ -7,7 +7,7 @@
       </view>
 
       <view class="list-container">
-        <view class="list-item" v-for="(item, index) in listData" :key="index">
+        <view class="list-item" v-for="(item, index) in listData" :key="index" @click="navToCourse(title)">
           <image class="item-image" :src="item.image" mode="aspectFill"/>
           <view class="item-info">
             <text class="item-title">{{ item.title }}</text>
@@ -29,13 +29,19 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import {defineProps} from 'vue';
 import './RCard.scss';
 import Taro from '@tarojs/taro';
 
 const navToTopic = (title) => {
   Taro.navigateTo({
     url: `/pages/topic/index?title=${title}`,
+  });
+};
+
+const navToCourse = (id) => {
+  Taro.navigateTo({
+    url: `/pages/course/index?id=${id}`,
   });
 };
 
