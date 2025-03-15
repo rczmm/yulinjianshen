@@ -3,10 +3,10 @@
     <image class="back-image" :src="avatar"/>
     <view class="coach-info">
       <view class="coach-person">
-        <nut-avatar :src="avatar" size="large"/>
-        <text class="person-name">
+        <nut-avatar style="margin-right: 20px;top:-30px" :src="avatar" size="large"/>
+        <view class="person-name">
           <text>{{ nickName }}</text>
-        </text>
+        </view>
       </view>
 
       <view class="tag-list">
@@ -19,10 +19,18 @@
         <text>{{ desc }}</text>
       </view>
 
+      <view class="coach-qu-title" style="margin-left: 20px;">
+        <text>教练资质</text>
+      </view>
+
       <view class="coach-qu">
         <view class="coach-qu-item" v-for="(item, index) in coachQuList" :key="index">
           <text>{{ item }}</text>
         </view>
+      </view>
+
+      <view class="coach-space-title" style="margin-left: 20px;">
+        <text>授课范围</text>
       </view>
 
       <view class="coach-space">
@@ -51,6 +59,7 @@ onMounted(() => {
   Taro.request({
     url: "http://localhost:8088/",
     method: "POST",
+    timeout: 100,
     success: (res) => {
       console.log(res);
     },
@@ -74,5 +83,46 @@ onMounted(() => {
   width: 100%;
   object-fit: fill;
 }
+
+.coach-info {
+  border-radius: 40px;
+  width: 98%;
+
+  .coach-person {
+    margin-left: 40px;
+    display: flex;
+  }
+
+  .tag-list {
+    display: flex;
+    padding: 20px 20px;
+
+    .tag-item {
+      margin-right: 20px;
+      background-color: #f5f5f5;
+      padding: 10px 20px
+    }
+  }
+
+  .coach-desc {
+    background-color: #f5f5f5;
+    margin: 20px 20px;
+  }
+
+  .coach-qu {
+    .coach-qu-item {
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+  }
+
+  .coach-space{
+    margin-top: 20px;
+    margin-left: 20px;
+    display: grid;
+  }
+
+}
+
 
 </style>
