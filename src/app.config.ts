@@ -9,6 +9,8 @@ export default {
     'pages/services/index',
     'pages/teacher/list',
     'pages/teacher/index',
+    'pages/class/list',
+    'pages/class/index',
   ],
   window: {
     backgroundTextStyle: 'light',

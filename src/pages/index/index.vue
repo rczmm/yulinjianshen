@@ -220,6 +220,10 @@ const navToPage = (text) => {
     Taro.navigateTo({
       url: '/pages/teacher/list'
     })
+  } else if (text === '大师课堂') {
+    Taro.navigateTo({
+      url: '/pages/class/list'
+    })
   }
 
 };
