@@ -57,6 +57,20 @@
 
       </view>
 
+      <view v-if="index === 1">
+        <view class="class-item" v-for="(item,index) in classList" :key="index">
+          <image :src="item.img"/>
+          <view class="class-info">
+            <view class="title">
+              <text>{{ item.title }}</text>
+            </view>
+            <view class="desc">
+              <text>{{ item.desc }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
     </view>
 
     <view class="notice">
@@ -86,6 +100,19 @@ const avatar = ref<string>('https://i1.hdslb.com/bfs/archive/e9e11aec4486da83755
 const tagList = ref<string[]>(['健身', '运动', '运动']);
 const descList = ref<string[]>(['1. 课程内容：', '2. 课程内容：', '3. 课程内容：', '4. 课程内容：', '5. 课程内容：', '6. 课程内容：']);
 const noticeList = ref<string[]>(['1. 课程内容：', '2. 课程内容：', '3. 课程内容：', '4. 课程内容：', '5. 课程内容：', '6. 课程内容：']);
+const classList = ref<any[]>([
+  {
+    img: 'https://i2.hdslb.com/bfs/archive/8a1e1f5c6a92f695cf55f6f98bbac5a973bd45e5.jpg',
+    title: '课程标题',
+    desc: '课程描述'
+  },
+  {
+    img: 'https://i2.hdslb.com/bfs/archive/8a1e1f5c6a92f695cf55f6f98bbac5a973bd45e5.jpg',
+    title: '课程标题',
+    desc: '课程描述'
+  }
+])
+
 
 onMounted(() => {
   Taro.request({
@@ -141,7 +168,70 @@ onMounted(() => {
 .tab-content {
   margin: 20px 30px;
 
+  .coach-desc {
 
+    .title {
+      margin: 20px 0;
+    }
+
+    .info {
+      display: flex;
+      align-items: flex-start;
+
+      .desc {
+        margin-left: 30px;
+
+        .name {
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+      }
+
+    }
+
+  }
+
+  .class-special {
+    .title {
+      margin: 20px 0;
+    }
+
+  }
+
+  .class-item {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+
+    image {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    .class-info {
+
+      .title {
+        font-weight: bold;
+      }
+
+      .desc {
+        color: #9c9999;
+      }
+
+
+    }
+
+  }
+
+}
+
+.notice {
+  margin: 20px 30px;
 }
 
 </style>
