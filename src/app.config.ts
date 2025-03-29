@@ -15,7 +15,7 @@ export default {
   ],
   subpackages: [
     {
-      root: 'pages/my',
+      root: 'pages/package_my',
       name: 'myPackage',
       pages: [
         'training/index',

@@ -100,42 +100,42 @@ const navToPage = (pageName) => {
   switch(pageName) {
     case '训练记录':
       Taro.navigateTo({
-        url: '/pages/my/training/index'
+        url: '/pages/package_my/training/index'
       })
       break;
     case '我的课程':
       Taro.navigateTo({
-        url: '/pages/my/course/index'
+        url: '/pages/package_my/course/index'
       })
       break;
     case '收藏':
       Taro.navigateTo({
-        url: '/pages/my/favorite/index'
+        url: '/pages/package_my/favorite/index'
       })
       break;
     case '健身计划':
       Taro.navigateTo({
-        url: '/pages/my/plan/index'
+        url: '/pages/package_my/plan/index'
       })
       break;
     case '私教课程':
       Taro.navigateTo({
-        url: '/pages/my/personal/index'
+        url: '/pages/package_my/personal/index'
       })
       break;
     case '会员卡':
       Taro.navigateTo({
-        url: '/pages/my/membership/index'
+        url: '/pages/package_my/membership/index'
       })
       break;
     case '优惠券':
       Taro.navigateTo({
-        url: '/pages/my/coupon/index'
+        url: '/pages/package_my/coupon/index'
       })
       break;
     case '订单':
       Taro.navigateTo({
-        url: '/pages/my/order/index'
+        url: '/pages/package_my/order/index'
       })
       break;
     case '反馈':
@@ -145,12 +145,12 @@ const navToPage = (pageName) => {
       break;
     case '健身常见问题':
       Taro.navigateTo({
-        url: '/pages/my/fitness/faq'
+        url: '/pages/package_my/fitness/faq'
       })
       break;
     case '关于我们':
       Taro.navigateTo({
-        url: '/pages/my/about/index'
+        url: '/pages/package_my/about/index'
       })
       break;
     default:
@@ -161,7 +161,7 @@ const navToPage = (pageName) => {
 // 编辑个人资料
 const editProfile = () => {
   Taro.navigateTo({
-    url: '/pages/my/profile/index'
+    url: '/pages/package_my/profile/index'
   })
 }
 

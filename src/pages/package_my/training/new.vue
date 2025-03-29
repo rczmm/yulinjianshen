@@ -460,6 +460,10 @@ const saveTraining = () => {
 
 .popup-container {
   padding: 20px;
+  background-color: #fff;
+  border-radius: 16px 16px 0 0;
+  max-height: 80vh;
+  overflow-y: auto;
   
   .popup-header {
     display: flex;
@@ -467,4 +471,45 @@ const saveTraining = () => {
     align-items: center;
     margin-bottom: 20px;
     
-    .
+    .popup-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+  
+  .popup-content {
+    .common-exercises {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .exercise-tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      
+      .exercise-tag {
+        font-size: 14px;
+        color: #666;
+        background-color: #f0f0f0;
+        padding: 6px 12px;
+        border-radius: 20px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        display: inline-block;
+        
+        &:active {
+          background-color: #e0e0e0;
+          color: #333;
+        }
+      }
+    }
+    
+    .popup-actions {
+      margin-top: 30px;
+      padding-bottom: 10px;
+    }
+  }
+}
+</style>
