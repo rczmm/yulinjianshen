@@ -187,7 +187,7 @@ const recommendList = ref([
   }
 ]);
 
-const cardListData = ref([ 
+const cardListData = ref([
   {
     title: "核心力量训练",
     time: "30分钟",
@@ -255,7 +255,7 @@ const onSearch = () => {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .index {
   font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
   background-color: #f8f8f8;
@@ -343,8 +343,17 @@ const onSearch = () => {
 
       .recommend-card-item {
         flex: 0 0 auto;
-        width: 150px;
+        width: 400px;
+        height: 400px;
         margin-right: 16px;
+        overflow: hidden;
+
+        .recommend-card-image{
+          height: 76%;
+          width: 100%;
+          object-fit: cover;
+        }
+
       }
     }
   }
