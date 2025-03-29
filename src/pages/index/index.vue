@@ -256,57 +256,100 @@ const onSearch = () => {
 
 </script>
 
-<style lang="scss">
+</style>
 
-.recommend-view {
-  margin: 10px 20px;
-}
+<style lang="scss" scoped>
+.index {
+  font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  padding-bottom: 20px;
 
-.recommend-title {
-  display: flex;
-  margin: 20px auto;
-}
-
-.recommend-title-main {
-  font-weight: bold;
-}
-
-.recommend-title-sub {
-  margin-left: 10px;
-  color: #666666;
-}
-
-.recommend-card-list {
-  display: flex;
-  overflow-x: scroll;
-
-
-  /* 隐藏 WebKit 浏览器（包括微信小程序）的滚动条 */
-  &::-webkit-scrollbar {
-    display: none;
+  .nut-searchbar {
+    margin: 16px;
   }
 
-  .recommend-card-item {
-    margin-right: 20px;
+  .swiper-view {
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0 16px;
 
-    .recommend-card-image {
-      border-radius: 20px;
+    .swiper-item {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      margin-bottom: 15px;
     }
-
-    .recommend-card-title {
-      font-weight: bold;
-      margin: 10px auto;
-    }
-
-    .recommend-card-info {
-      color: #666666;
-    }
-
   }
 
+  .nut-grid {
+    margin-top: 16px;
+    background-color: #fff;
+    padding: 16px 0;
+    border-radius: 16px;
+
+    .nut-grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .nut-avatar {
+        margin-bottom: 8px;
+        image {
+          border-radius: 50%;
+        }
+      }
+
+      .text {
+        font-size: 14px;
+        color: #333;
+      }
+    }
+  }
+
+  .nut-divider {
+    margin: 20px 16px;
+  }
+
+  .recommend-view {
+    padding: 20px 16px;
+    background-color: #fff;
+    border-radius: 16px;
+    margin: 0 16px;
+
+    .recommend-title {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+
+      .recommend-title-main {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .recommend-title-sub {
+        font-size: 14px;
+        color: #666;
+      }
+    }
+
+    .recommend-card-list {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 10px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .recommend-card-item {
+        flex: 0 0 auto;
+        width: 150px;
+        margin-right: 16px;
+      }
+    }
+  }
 }
-
-
 </style>
