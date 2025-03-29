@@ -467,4 +467,27 @@ const saveTraining = () => {
     align-items: center;
     margin-bottom: 20px;
     
-    .
+    .popup-title {
+      font-size: 18px;
+      color: #333;
+    }
+  }
+  
+  .popup-content {
+    padding: 20px;
+  }
+  
+  .common-exercises {
+    margin-top: 20px;
+  }
+  
+  .exercise-tags {
+    .exercise-tag {
+      padding: 5px 10px;
+      border-radius: 15px;
+      border: 1px solid #ddd;
+      margin: 0 5px 5px 0;
+      display: inline-block;
+    }
+  }
+  </style>
