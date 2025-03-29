@@ -14,6 +14,7 @@
   box-sizing: border-box; /* 确保padding包含在width内 */
   /* 实现背景透明效果 - 使用rgba颜色或者opacity，这里使用rgba背景色 + 背景图片 */
   background-color: rgba(255, 255, 255, 0.7); /* 白色背景，0.7透明度，可以调整 */
+  margin-bottom: 20px; /* 添加底部间距 */
 }
 
 .person-info {

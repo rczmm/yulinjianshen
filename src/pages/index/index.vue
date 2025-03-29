@@ -1,6 +1,6 @@
 <template>
   <view class="index">
-    <nut-searchbar></nut-searchbar>
+    <nut-searchbar v-model="searchValue" placeholder="搜索课程" @search="onSearch"></nut-searchbar>
 
     <nut-swiper
       class="swiper-view"
@@ -178,6 +178,12 @@ const recommendList = ref([
     time: "6分钟",
     energy: "72千卡",
     level: "零基础"
+  }, {
+    image: "https://i0.hdslb.com/bfs/archive/3d1b25ce0c6785534011b5272e5706ebd4751722.jpg",
+    title: "减脂五分钟体验课",
+    time: "6分钟",
+    energy: "72千卡",
+    level: "零基础"
   }
 ]);
 
@@ -224,8 +230,28 @@ const navToPage = (text) => {
     Taro.navigateTo({
       url: '/pages/class/list'
     })
+  } else if (text === '课程库') {
+    Taro.navigateTo({
+      url: '/pages/course/list'
+    })
+  } else if (['减脂减重', '平坦腹部', '瘦腿', '体态', '产后修复'].includes(text)) {
+    // 根据类别跳转到课程库页面并传递类别参数
+    Taro.navigateTo({
+      url: `/pages/course/list?category=${text}`
+    })
   }
+};
 
+const searchValue = ref('');
+
+// 搜索处理函数
+const onSearch = () => {
+  if (searchValue.value.trim()) {
+    // 跳转到课程库页面并传递搜索关键词
+    Taro.navigateTo({
+      url: `/pages/course/list?keyword=${encodeURIComponent(searchValue.value.trim())}`
+    });
+  }
 };
 
 </script>
