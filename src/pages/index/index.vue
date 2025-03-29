@@ -187,31 +187,30 @@ const recommendList = ref([
   }
 ]);
 
-const cardListData = ref([
+const cardListData = ref([ 
   {
-    id: '1',
-    image: 'https://i1.hdslb.com/bfs/archive/cb398a597840785835f2eb608389f0c5146bb864.jpg',
-    title: '列表项标题1',
-    time: '时间1',
-    energy: '能量1',
-    level: '等级1',
+    title: "核心力量训练",
+    time: "30分钟",
+    energy: "250千卡",
+    level: "中级",
+    image: "https://images.unsplash.com/photo-1534258936927-55d62742ed31?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
-    id: '2',
-    image: 'https://i1.hdslb.com/bfs/archive/cb398a597840785835f2eb608389f0c5146bb864.jpg',
-    title: '列表项标题2',
-    time: '时间2',
-    energy: '能量2',
-    level: '等级2',
-  }, {
-    id: '3',
-    image: 'https://i2.hdslb.com/bfs/archive/08ff6bb05cb9cf028206691174f2d4125c3a9321.jpg',
-    title: '列表项标题2',
-    time: '时间2',
-    energy: '能量2',
-    level: '等级2',
+    title: "HIIT燃脂",
+    time: "20分钟",
+    energy: "300千卡",
+    level: "高级",
+    image: "https://images.unsplash.com/photo-1517836357463-d6dd53dc2f48?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    title: "瑜伽初学者",
+    time: "45分钟",
+    energy: "150千卡",
+    level: "初级",
+    image: "https://images.unsplash.com/photo-1544367567-65529356adbf?q=80&w=1901&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   }
 ]);
+
 
 const navToPage = (text) => {
   if (text === '课程专题') {
@@ -255,8 +254,6 @@ const onSearch = () => {
 };
 
 </script>
-
-</style>
 
 <style lang="scss" scoped>
 .index {
