@@ -140,7 +140,7 @@ const navToPage = (pageName) => {
       break;
     case '反馈':
       Taro.navigateTo({
-        url: '/pages/comment/index?type=feedback'
+        url: '/pages/package_my/feedback/index'
       })
       break;
     case '健身常见问题':
