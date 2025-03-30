@@ -374,7 +374,7 @@ const calculateProgress = () => {
 // 编辑计划
 const editPlan = () => {
   Taro.navigateTo({
-    url: `/pages/my/plan/edit?id=${planId}`
+    url: `/pages/package_my/plan/edit?id=${planId}`
   });
 };
 

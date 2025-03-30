@@ -79,7 +79,9 @@ export default defineConfig<'webpack5'>(async (merge, {command, mode}) => {
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
         chain.plugin('unplugin-vue-components').use(Components({
-          resolvers: [NutUIResolver({taro: true})]
+          resolvers: [NutUIResolver({taro: true})],
+          dts: 'components.d.ts',
+          include: [/\.vue$/, /\.vue\?vue/]
         }))
       }
     },
@@ -111,7 +113,9 @@ export default defineConfig<'webpack5'>(async (merge, {command, mode}) => {
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
         chain.plugin('unplugin-vue-components').use(Components({
-          resolvers: [NutUIResolver({taro: true})]
+          resolvers: [NutUIResolver({taro: true})],
+          dts: 'components.d.ts',
+          include: [/\.vue$/, /\.vue\?vue/]
         }))
       }
     },

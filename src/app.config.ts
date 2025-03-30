@@ -25,9 +25,13 @@ export default {
         'favorite/index',
         'plan/index',
         'plan/detail',
+        'plan/create',
+        'plan/edit',
         'personal/index',
+        'personal/detail',
         'membership/index',
         'coupon/index',
+        'coupon/use',
         'order/index',
         'fitness/faq',
         'fitness/index',
@@ -35,7 +39,9 @@ export default {
         'profile/index',
         'feedback/index',
         'feedback/reply',
-        'faq/index'
+        'faq/index',
+        'exercise/index',
+        'article/index',
       ]
     }
   ],

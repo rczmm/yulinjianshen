@@ -273,7 +273,7 @@ const getStatusText = (status) => {
 // 查看课程详情
 const viewCourseDetail = (id) => {
   Taro.navigateTo({
-    url: `/pages/my/personal/detail?id=${id}`
+    url: `/pages/package_my/personal/detail?id=${id}`
   });
 };
 

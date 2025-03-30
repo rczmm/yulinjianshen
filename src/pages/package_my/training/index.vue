@@ -3,7 +3,7 @@
     <view class="page-header">
       <view class="header-title">训练记录</view>
     </view>
-    
+
     <view class="training-stats">
       <view class="stats-card">
         <view class="stats-value">{{ stats.totalSessions }}</view>
@@ -18,7 +18,7 @@
         <view class="stats-label">周平均</view>
       </view>
     </view>
-    
+
     <view class="training-filter">
       <nut-tabs v-model="activeTab">
         <nut-tab-pane title="全部" pane-key="all"></nut-tab-pane>
@@ -27,21 +27,21 @@
         <nut-tab-pane title="拉伸放松" pane-key="stretch"></nut-tab-pane>
       </nut-tabs>
     </view>
-    
+
     <view class="training-list">
       <view v-if="trainingRecords.length === 0" class="empty-state">
         <image src="https://i0.hdslb.com/bfs/archive/03ec2bfe5e369a8b8e73ba4d2816caf8835cb2f7.jpg" mode="aspectFit" class="empty-image"></image>
         <view class="empty-text">暂无训练记录</view>
         <nut-button type="primary" size="small" @click="startNewTraining">开始训练</nut-button>
       </view>
-      
+
       <view v-else>
         <view v-for="(record, index) in trainingRecords" :key="index" class="record-item" @click="viewTrainingDetail(record.id)">
           <view class="record-date">
             <view class="date-day">{{ record.date.day }}</view>
             <view class="date-month">{{ record.date.month }}月</view>
           </view>
-          
+
           <view class="record-content">
             <view class="record-title">{{ record.title }}</view>
             <view class="record-stats">
@@ -52,7 +52,7 @@
               <text v-for="(exercise, idx) in record.exercises" :key="idx" class="exercise-tag">{{ exercise }}</text>
             </view>
           </view>
-          
+
           <view class="record-action">
             <nut-icon name="right"></nut-icon>
           </view>
@@ -95,7 +95,7 @@ const fetchTrainingRecords = () => {
       totalHours: 42,
       weeklyAverage: 3.5
     };
-    
+
     // 模拟训练记录数据
     trainingRecords.value = [
       {
@@ -137,7 +137,7 @@ const fetchTrainingRecords = () => {
 // 查看训练详情
 const viewTrainingDetail = (id) => {
   Taro.navigateTo({
-    url: `/pages/my/training/detail?id=${id}`
+    url: `/pages/package_my/training/detail?id=${id}`
   });
 };
 
@@ -158,7 +158,7 @@ const startNewTraining = () => {
 
 .page-header {
   margin-bottom: 20px;
-  
+
   .header-title {
     font-size: 24px;
     font-weight: bold;
@@ -170,7 +170,7 @@ const startNewTraining = () => {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-  
+
   .stats-card {
     background-color: #fff;
     border-radius: 10px;
@@ -179,22 +179,22 @@ const startNewTraining = () => {
     margin: 0 5px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    
+
     &:first-child {
       margin-left: 0;
     }
-    
+
     &:last-child {
       margin-right: 0;
     }
-    
+
     .stats-value {
       font-size: 24px;
       font-weight: bold;
       color: #333;
       margin-bottom: 5px;
     }
-    
+
     .stats-label {
       font-size: 14px;
       color: #666;
@@ -217,20 +217,20 @@ const startNewTraining = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     .empty-image {
       width: 100px;
       height: 100px;
       margin-bottom: 15px;
     }
-    
+
     .empty-text {
       font-size: 16px;
       color: #999;
       margin-bottom: 20px;
     }
   }
-  
+
   .record-item {
     display: flex;
     background-color: #fff;
@@ -238,7 +238,7 @@ const startNewTraining = () => {
     padding: 15px;
     margin-bottom: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    
+
     .record-date {
       display: flex;
       flex-direction: column;
@@ -246,49 +246,49 @@ const startNewTraining = () => {
       justify-content: center;
       width: 60px;
       margin-right: 15px;
-      
+
       .date-day {
         font-size: 24px;
         font-weight: bold;
         color: #333;
       }
-      
+
       .date-month {
         font-size: 14px;
         color: #666;
       }
     }
-    
+
     .record-content {
       flex: 1;
-      
+
       .record-title {
         font-size: 18px;
         font-weight: bold;
         color: #333;
         margin-bottom: 5px;
       }
-      
+
       .record-stats {
         display: flex;
         margin-bottom: 10px;
-        
+
         .record-duration {
           font-size: 14px;
           color: #666;
           margin-right: 10px;
         }
-        
+
         .record-type {
           font-size: 14px;
           color: #666;
         }
       }
-      
+
       .record-exercises {
         display: flex;
         flex-wrap: wrap;
-        
+
         .exercise-tag {
           font-size: 12px;
           color: #666;
@@ -300,7 +300,7 @@ const startNewTraining = () => {
         }
       }
     }
-    
+
     .record-action {
       display: flex;
       align-items: center;
