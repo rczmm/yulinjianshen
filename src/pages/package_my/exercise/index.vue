@@ -3,42 +3,42 @@
     <view class="page-header">
       <view class="header-title">动作详情</view>
     </view>
-    
+
     <view class="exercise-info" v-if="exerciseDetail">
       <view class="exercise-image">
         <image :src="exerciseDetail.image" mode="aspectFill"></image>
       </view>
-      
+
       <view class="exercise-content">
         <view class="exercise-title">{{ exerciseDetail.name }}</view>
-        
+
         <view class="exercise-meta">
           <view class="meta-item">
             <view class="meta-label">目标肌群</view>
             <view class="meta-value">{{ exerciseDetail.target }}</view>
           </view>
-          
+
           <view class="meta-item">
             <view class="meta-label">难度级别</view>
             <view class="meta-value">{{ exerciseDetail.level }}</view>
           </view>
-          
+
           <view class="meta-item" v-if="exerciseDetail.equipment">
             <view class="meta-label">所需器材</view>
             <view class="meta-value">{{ exerciseDetail.equipment }}</view>
           </view>
         </view>
-        
+
         <view class="exercise-tags" v-if="exerciseDetail.tags && exerciseDetail.tags.length > 0">
           <text v-for="(tag, index) in exerciseDetail.tags" :key="index" class="tag-item">{{ tag }}</text>
         </view>
       </view>
-      
+
       <view class="exercise-section">
         <view class="section-title">动作说明</view>
         <view class="section-content">{{ exerciseDetail.description }}</view>
       </view>
-      
+
       <view class="exercise-section">
         <view class="section-title">执行步骤</view>
         <view class="steps-list">
@@ -48,7 +48,7 @@
           </view>
         </view>
       </view>
-      
+
       <view class="exercise-section" v-if="exerciseDetail.tips && exerciseDetail.tips.length > 0">
         <view class="section-title">注意事项</view>
         <view class="tips-list">
@@ -58,7 +58,7 @@
           </view>
         </view>
       </view>
-      
+
       <view class="exercise-section" v-if="exerciseDetail.variations && exerciseDetail.variations.length > 0">
         <view class="section-title">变式动作</view>
         <view class="variations-list">
@@ -70,7 +70,7 @@
           </view>
         </view>
       </view>
-      
+
       <view class="action-buttons">
         <nut-button type="primary" @click="toggleFavorite" :class="{ 'favorited': isFavorited }">
           {{ isFavorited ? '取消收藏' : '收藏动作' }}
@@ -78,9 +78,9 @@
         <nut-button type="info" @click="addToTraining">添加到训练</nut-button>
       </view>
     </view>
-    
+
     <view v-else class="loading-state">
-      <nut-loading size="40px">加载中...</nut-loading>
+      <view class="loading-text">加载中...</view>
     </view>
   </view>
 </template>
@@ -171,12 +171,12 @@ const checkFavoriteStatus = (id) => {
 const toggleFavorite = () => {
   // 这里应该发送请求到服务器更新收藏状态
   Taro.showLoading({ title: isFavorited.value ? '取消中...' : '收藏中...' });
-  
+
   // 模拟网络请求
   setTimeout(() => {
     Taro.hideLoading();
     isFavorited.value = !isFavorited.value;
-    
+
     Taro.showToast({
       title: isFavorited.value ? '已收藏' : '已取消收藏',
       icon: 'success',
@@ -209,7 +209,7 @@ const viewExerciseDetail = (id) => {
 
 .page-header {
   margin-bottom: 20px;
-  
+
   .header-title {
     font-size: 24px;
     font-weight: bold;
@@ -224,43 +224,43 @@ const viewExerciseDetail = (id) => {
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
-    
+
     image {
       width: 100%;
       height: 100%;
     }
   }
-  
+
   .exercise-content {
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    
+
     .exercise-title {
       font-size: 22px;
       font-weight: bold;
       color: #333;
       margin-bottom: 15px;
     }
-    
+
     .exercise-meta {
       display: flex;
       flex-wrap: wrap;
       margin-bottom: 15px;
-      
+
       .meta-item {
         flex: 1;
         min-width: 33%;
         margin-bottom: 10px;
-        
+
         .meta-label {
           font-size: 14px;
           color: #999;
           margin-bottom: 5px;
         }
-        
+
         .meta-value {
           font-size: 16px;
           color: #333;
@@ -268,11 +268,11 @@ const viewExerciseDetail = (id) => {
         }
       }
     }
-    
+
     .exercise-tags {
       display: flex;
       flex-wrap: wrap;
-      
+
       .tag-item {
         font-size: 12px;
         color: #2196f3;
@@ -284,14 +284,14 @@ const viewExerciseDetail = (id) => {
       }
     }
   }
-  
+
   .exercise-section {
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    
+
     .section-title {
       font-size: 18px;
       font-weight: bold;
@@ -299,7 +299,7 @@ const viewExerciseDetail = (id) => {
       margin-bottom: 15px;
       position: relative;
       padding-left: 12px;
-      
+
       &:before {
         content: '';
         position: absolute;
@@ -311,18 +311,18 @@ const viewExerciseDetail = (id) => {
         border-radius: 2px;
       }
     }
-    
+
     .section-content {
       font-size: 16px;
       color: #666;
       line-height: 1.6;
     }
-    
+
     .steps-list {
       .step-item {
         display: flex;
         margin-bottom: 15px;
-        
+
         .step-number {
           width: 24px;
           height: 24px;
@@ -336,7 +336,7 @@ const viewExerciseDetail = (id) => {
           margin-right: 10px;
           flex-shrink: 0;
         }
-        
+
         .step-content {
           font-size: 16px;
           color: #666;
@@ -345,19 +345,19 @@ const viewExerciseDetail = (id) => {
         }
       }
     }
-    
+
     .tips-list {
       .tip-item {
         display: flex;
         margin-bottom: 10px;
-        
+
         .tip-dot {
           color: #2196f3;
           font-size: 18px;
           margin-right: 8px;
           line-height: 1.4;
         }
-        
+
         .tip-content {
           font-size: 16px;
           color: #666;
@@ -366,29 +366,29 @@ const viewExerciseDetail = (id) => {
         }
       }
     }
-    
+
     .variations-list {
       display: flex;
       flex-wrap: wrap;
       margin: 0 -10px;
-      
+
       .variation-item {
         width: calc(50% - 20px);
         margin: 0 10px 20px;
-        
+
         .variation-image {
           width: 100%;
           height: 100px;
           border-radius: 8px;
           overflow: hidden;
           margin-bottom: 8px;
-          
+
           image {
             width: 100%;
             height: 100%;
           }
         }
-        
+
         .variation-name {
           font-size: 14px;
           color: #333;
@@ -397,24 +397,24 @@ const viewExerciseDetail = (id) => {
       }
     }
   }
-  
+
   .action-buttons {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
-    
+
     .nut-button {
       flex: 1;
       margin: 0 10px;
-      
+
       &:first-child {
         margin-left: 0;
       }
-      
+
       &:last-child {
         margin-right: 0;
       }
-      
+
       &.favorited {
         background-color: #ff9800;
         border-color: #ff9800;
