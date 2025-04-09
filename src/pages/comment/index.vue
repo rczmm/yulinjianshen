@@ -2,7 +2,6 @@
   <view class="page-container">
     <!-- 热门评论区 -->
     <view class="comment-section hot-comment">
-      <!-- 使用 round-radius="0" 移除 NutUI Cell 可能自带的圆角，由我们自己控制 -->
       <nut-cell title="热门评论" desc="更多 >" :round-radius="0"></nut-cell>
       <view class="comment-list">
         <view class="comment-item" v-for="(item, index) in hotCommentList" :key="'hot-' + index">
@@ -12,8 +11,7 @@
               <text class="comment-item__nickname">{{ item.nickname }}</text>
             </view>
             <view class="comment-item__meta">
-              <!-- 使用 NutUI 图标，颜色来自主题变量 -->
-              <nut-icon name="fabulous" size="12px" :color="$text-color-secondary" style="margin-right: 4px;"></nut-icon>
+              <nut-icon name="fabulous" size="14px" color="#FF9500"></nut-icon>
               <text>{{ item.num }}</text>
             </view>
           </view>
@@ -30,10 +28,8 @@
 
     <!-- 最新评论区 -->
     <view class="comment-section new-comment">
-      <!-- 注意: 实际应绑定 newCommentList -->
       <nut-cell title="最新评论" desc="全部 >" :round-radius="0"></nut-cell>
       <view class="comment-list">
-        <!-- 注意: 实际应遍历 newCommentList -->
         <view class="comment-item" v-for="(item, index) in hotCommentList" :key="'new-' + index">
           <view class="comment-item__header">
             <view class="comment-item__author">
@@ -41,7 +37,7 @@
               <text class="comment-item__nickname">{{ item.nickname }}</text>
             </view>
             <view class="comment-item__meta">
-              <nut-icon name="fabulous" size="12px" :color="$text-color-secondary" style="margin-right: 4px;"></nut-icon>
+              <nut-icon name="fabulous" size="14px" color="#FF9500"></nut-icon>
               <text>{{ item.num }}</text>
             </view>
           </view>
@@ -59,10 +55,8 @@
     <!-- 评论输入区 -->
     <view class="submit-comment">
       <view class="submit-comment__input-wrapper">
-        <!-- 使用主题变量中的 placeholder 颜色 -->
-        <nut-input :placeholder="'留下你的精彩评论...'" class="submit-comment__input" />
+        <nut-input placeholder="留下你的精彩评论..." class="submit-comment__input" />
       </view>
-      <!-- 使用主题变量中的 accent-color -->
       <nut-button type="primary" size="small" class="submit-comment__button">发布</nut-button>
     </view>
   </view>
@@ -130,66 +124,73 @@ const loadMockData = () => {
 </script>
 
 <style lang="scss">
-// 1. 导入你的主题变量文件 (!!! 请确保路径正确 !!!)
-//    根据你的项目结构调整路径，常见的可能是:
-//    @import '@/styles/variables.scss';
-//    @import '../../styles/theme.scss';
+// 导入主题变量
 @import '../../styles/theme';
 
-// 2. 页面基础样式
+// 页面基础样式
 .page-container {
-  background-color: $bg-color-tertiary; // 使用第三级背景色作为页面背景
-  padding-bottom: 80px; // 为固定在底部的输入框留出空间 (根据输入框实际高度调整)
+  background-color: $bg-color-tertiary;
+  padding-bottom: 80px; // 为固定在底部的输入框留出空间
   min-height: 100vh;
-  box-sizing: border-box; // 推荐加上，避免 padding 影响总高度计算
+  box-sizing: border-box;
 }
 
-// 3. 评论区段样式
+// 评论区段样式
 .comment-section {
-  background-color: $bg-color; // 使用主背景色 (白色) 作为卡片背景
-  margin-bottom: $spacing-md; // 区块之间的间距
+  background-color: $bg-color;
+  margin-bottom: $spacing-md;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
 
-  // 覆盖 NutUI Cell 的一些默认样式
+  // 覆盖 NutUI Cell 的默认样式
   .nut-cell {
-    padding: $spacing-md $spacing-lg; // 使用变量定义内边距
-    background-color: transparent; // 背景透明，由 .comment-section 控制
-    // Cell 底部分割线
+    padding: $spacing-md $spacing-lg;
+    background-color: transparent;
+    
     &::after {
-      border-bottom: 1px solid $border-color; // 使用变量定义边框颜色和宽度 (1px)
-      left: $spacing-lg; // 分割线左侧留白
-      right: $spacing-lg; // 分割线右侧留白
+      border-bottom: 1px solid $border-color;
+      left: $spacing-lg;
+      right: $spacing-lg;
     }
+    
     .nut-cell__title {
-      font-size: $font-size-medium-large; // 使用中大标题字号
-      font-weight: $font-weight-semibold; // 使用半粗体
-      color: $text-color-primary; // 使用主要文字颜色
+      font-size: $font-size-medium;
+      font-weight: $font-weight-semibold;
+      color: $text-color-primary;
     }
+    
     .nut-cell__value {
-      font-size: $font-size-small; // 使用小字号
-      color: $text-color-secondary; // 使用次要文字颜色
+      font-size: $font-size-small;
+      color: $primary-color;
     }
   }
 }
 
-// 4. 评论列表样式
+// 评论列表样式
 .comment-list {
-  padding: 0 $spacing-lg $spacing-md $spacing-lg; // 列表左右及底部内边距
+  padding: 0 $spacing-lg $spacing-md $spacing-lg;
 }
 
-// 5. 单条评论样式
+// 单条评论样式
 .comment-item {
-  padding: $spacing-md 0; // 上下内边距
+  padding: $spacing-md 0;
+  transition: background-color $transition-fast;
+  
+  &:hover {
+    background-color: rgba($primary-light, 0.05);
+  }
 
   // 添加上边框作为分隔线，第一个评论项除外
   &:not(:first-child) {
-    border-top: 1px solid $border-color; // 使用变量定义边框颜色和宽度 (1px)
+    border-top: 1px solid $border-color;
   }
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: $spacing-sm; // 头部和内容间距
+    margin-bottom: $spacing-sm;
   }
 
   &__author {
@@ -198,97 +199,98 @@ const loadMockData = () => {
   }
 
   &__avatar {
-    margin-right: $spacing-sm; // 头像和昵称间距
-    // 可以考虑给头像添加圆角变量
-    // border-radius: $border-radius-circle;
+    margin-right: $spacing-sm;
+    border: 2px solid rgba($primary-color, 0.1);
   }
 
   &__nickname {
-    font-size: $font-size-normal; // 使用正文字号
-    font-weight: $font-weight-medium; // 使用中等字重
-    color: $text-color-primary; // 使用主要文字颜色
+    font-size: $font-size-normal;
+    font-weight: $font-weight-medium;
+    color: $text-color-primary;
   }
 
   &__meta {
     display: flex;
     align-items: center;
-    font-size: $font-size-small; // 使用小字号
-    color: $text-color-secondary; // 使用次要文字颜色
+    font-size: $font-size-small;
+    color: $text-color-secondary;
+    background-color: rgba($accent-color, 0.1);
+    padding: $spacing-xxs $spacing-xs;
+    border-radius: $border-radius-sm;
+    
+    .nut-icon {
+      margin-right: 4px;
+    }
   }
 
   &__content {
-    font-size: $font-size-normal; // 使用正文字号
-    color: $text-color-primary; // 使用主要文字颜色
-    line-height: $line-height-normal; // 使用正常行高
-    // 左侧内边距与头像对齐 (假设 NutUI small 头像宽度约 24px)
-    padding-left: (24px + $spacing-sm);
-    word-break: break-word; // 允许长单词换行
+    font-size: $font-size-normal;
+    color: $text-color-primary;
+    line-height: $line-height-normal;
+    padding-left: 36px; // 与头像对齐
+    word-break: break-word;
   }
 }
 
-// 6. 评论列表空状态
+// 评论列表空状态
 .comment-list-empty {
   padding: $spacing-xl 0;
   text-align: center;
-  color: $text-color-secondary; // 使用次要文字颜色
-  font-size: $font-size-normal; // 使用正文字号
+  color: $text-color-secondary;
+  font-size: $font-size-normal;
 }
 
-
-// 7. 底部评论输入区样式
+// 底部评论输入区样式
 .submit-comment {
-  position: fixed; // 固定在底部
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   display: flex;
   align-items: center;
-  padding: $spacing-sm $spacing-lg; // 使用变量定义内边距
-  background-color: $bg-color; // 使用主背景色 (白色)
-  border-top: 1px solid $border-color; // 使用变量定义顶部边框
-  z-index: $z-index-fixed; // 使用变量定义层级
+  padding: $spacing-sm $spacing-lg;
+  background-color: $bg-color;
+  border-top: 1px solid $border-color;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  z-index: $z-index-fixed;
 
   &__input-wrapper {
     flex-grow: 1;
-    margin-right: $spacing-md; // 输入框和按钮间距
+    margin-right: $spacing-md;
   }
 
   &__input {
     // 覆盖 NutUI Input 样式
-    .nut-input-inner {
-      background-color: $bg-color-tertiary; // 输入框背景使用第三级背景色
-      border-radius: 18px; // 可以考虑用变量 $border-radius-xl 或自定义
-      padding: $spacing-xs $spacing-md; // 使用变量定义内边距
-      border: none; // 移除默认边框
-      font-size: $font-size-normal; // 输入文字大小
-      color: $text-color-primary; // 输入文字颜色
+    :deep(.nut-input-inner) {
+      background-color: $bg-color-tertiary;
+      border-radius: 18px;
+      padding: $spacing-xs $spacing-md;
+      border: none;
+      font-size: $font-size-normal;
+      color: $text-color-primary;
     }
-    // 调整 placeholder 颜色 (Taro H5/小程序可能写法不同)
-    .input-text::placeholder, // 小程序
-    input::placeholder { // H5
-      color: $text-color-secondary; // 使用次要文字颜色作为 placeholder 颜色
+    
+    :deep(input::placeholder) {
+      color: $text-color-secondary;
       font-size: $font-size-normal;
     }
   }
 
   &__button {
-    // 强制使用主题强调色
     background-color: $accent-color !important;
     border-color: $accent-color !important;
-    color: $bg-color !important; // 强调色上的文字用白色 (主背景色)
-    padding: $spacing-xs $spacing-md; // 使用变量定义内边距
-    border-radius: 18px; // 与输入框一致的圆角
-    box-shadow: none; // 移除 NutUI 可能的阴影
-    border: none; // 移除 NutUI 可能的边框
-    font-size: $font-size-normal; // 按钮文字大小
-    font-weight: $font-weight-medium; // 按钮文字字重
-
-    // 添加简单的按下效果
-    transition: opacity $transition-fast; // 使用变量定义过渡效果
+    color: $bg-color !important;
+    padding: $spacing-xs $spacing-md;
+    border-radius: 18px;
+    box-shadow: none;
+    border: none;
+    font-size: $font-size-normal;
+    font-weight: $font-weight-medium;
+    transition: opacity $transition-fast;
+    
     &:active {
       opacity: 0.8;
     }
   }
 }
-
 </style>
