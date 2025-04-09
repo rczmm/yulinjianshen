@@ -5,15 +5,12 @@
       <view class="title-view">
 
         <view class="title-text">
-
           <view class="title-text-main">
             <text>{{ title }}</text>
           </view>
-
           <view class="title-text-sub">
             <text>{{ desc }}</text>
           </view>
-
         </view>
 
         <view class="title-info">
