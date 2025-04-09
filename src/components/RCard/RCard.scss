@@ -1,86 +1,127 @@
+@import '../../styles/theme';
+
 .card-container {
-  margin: 25px 25px;
-  padding: 20px 10px; /* 上下padding可以根据需要调整，左右固定10px */
-  border-radius: 10px;
-  box-sizing: border-box; /* 保证padding包含在width内 */
-  background-size: cover;
-  background-position: center;
+  margin: $spacing-lg $spacing-md;
+  padding: $spacing-lg $spacing-sm;
+  border-radius: $border-radius-lg;
+  box-sizing: border-box;
+  box-shadow: $shadow-md;
+  position: relative;
+  overflow: hidden;
+  transition: all $transition-normal;
+  background-image: linear-gradient(135deg, $primary-color, $accent-color);
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-lg;
+  }
 }
 
 .card-content {
-  padding: 20px;
-  position: relative; /* 确保内部元素定位 */
+  padding: $spacing-lg;
+  position: relative;
+  z-index: 2;
 }
 
 .title-description {
-  margin-bottom: 20px;
-  text-align: left; /* 确保内部文字左对齐 */
+  margin-bottom: $spacing-lg;
+  text-align: left;
 }
 
 .title {
-  font-size: 30px; /* 标题字号，可以根据需要调整 */
-  font-weight: bold;
-  color: #333; /* 标题颜色，可以根据背景图片调整 */
-  display: block; /* 确保独占一行，方便下方description对其 */
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
+  color: white;
+  display: block;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  margin-bottom: $spacing-xs;
+  letter-spacing: 0.5px;
 }
 
 .description {
-  font-size: 24px; /* 描述字号，可以根据需要调整 */
-  color: #666; /* 描述颜色，可以根据背景图片调整 */
-  display: block; /* 确保独占一行 */
+  font-size: $font-size-medium;
+  color: rgba(255,255,255,0.95);
+  display: block;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+  letter-spacing: 0.3px;
 }
 
 .list-container {
-  padding: 25px;
-  background-color: rgb(255, 255, 255);
-  /* 这里不需要设置水平居中，因为list-item默认会撑满宽度，内容会根据item-info等内部元素居中 */
+  padding: $spacing-lg;
+  background-color: $bg-color;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  border-top: 3px solid $accent-color;
 }
 
 .list-item {
-  display: flex; /* 使用Flex布局，方便图片和信息区域左右排列 */
-  align-items: center; /* 垂直居中对齐 */
-  padding-bottom: 15px; /* 列表项底部留白，与分割线配合 */
-  margin-bottom: 15px; /* 列表项底部外边距，与分割线配合 */
+  display: flex;
+  align-items: center;
+  padding-bottom: $spacing-md;
+  margin-bottom: $spacing-md;
+  transition: all $transition-fast;
+  position: relative;
+
+  &:hover {
+    transform: translateX(5px);
+    background-color: rgba($primary-color, 0.05);
+    border-radius: $border-radius-sm;
+  }
+
+  &:active {
+    transform: translateX(8px);
+  }
 }
 
 /* 分割线样式 - 应用于除了最后一个列表项之外的所有列表项 */
 .list-item:not(:last-child) {
-  border-bottom: 1px solid #eee; /* 分割线样式 */
-  padding-bottom: 15px; /* 保持与之前分割线效果一致的底部留白 */
-  margin-bottom: 15px; /* 保持与之前分割线效果一致的底部外边距 */
+  border-bottom: 1px solid $border-color;
+  padding-bottom: $spacing-md;
+  margin-bottom: $spacing-md;
 }
 
 
 .item-image {
-  width: 100px; /* 图片宽度，可以调整 */
-  height: 100px; /* 图片高度，可以调整 */
-  border-radius: 10px; /* 图片圆角，可以调整 */
-  margin-right: 30px; /* 图片与信息区域间隔 */
-  flex-shrink: 0; /* 防止图片被压缩 */
+  width: 100px;
+  height: 100px;
+  border-radius: $border-radius-md;
+  margin-right: $spacing-lg;
+  flex-shrink: 0;
+  object-fit: cover;
+  box-shadow: $shadow-sm;
+  transition: all $transition-fast;
+  border: 2px solid transparent;
+  
+  &:hover {
+    transform: scale(1.05);
+    border-color: $accent-color;
+    box-shadow: $shadow-md;
+  }
 }
 
 .item-info {
-  flex: 1; /* 信息区域占据剩余空间 */
-  text-align: left; /* 内部文字左对齐 */
+  flex: 1;
+  text-align: left;
 }
 
 .item-title {
-  font-size: 20px; /* 列表项标题字号，可以调整 */
-  color: #333; /* 列表项标题颜色 */
-  display: block; /* 确保独占一行 */
-  margin-bottom: 5px; /* 标题与详情信息间隔 */
+  font-size: $font-size-medium;
+  color: $text-color-primary;
+  font-weight: $font-weight-medium;
+  display: block;
+  margin-bottom: $spacing-xs;
 }
 
 .item-details {
-  font-size: 16px; /* 详情信息字号 */
-  color: #999; /* 详情信息颜色 */
-  display: flex; /* 使用Flex布局，让时间能量等级在一行显示 */
-  justify-content: flex-start; /* 左对齐 */
-  gap: 10px; /* 详情信息之间的间隔 */
+  font-size: $font-size-small;
+  color: $text-color-secondary;
+  display: flex;
+  justify-content: flex-start;
+  gap: $spacing-sm;
 }
 
 .detail-text {
-  margin-right: 5px; /* 详情文字间距 */
+  margin-right: $spacing-xxs;
 }
 
 .separator {
@@ -92,11 +133,48 @@
 }
 
 .view-more-button {
-  background-color: white; /* 查看更多按钮背景白色 */
-  border-radius: 8px;
-  padding: 10px 20px;
+  background-color: $bg-color;
+  border-radius: $border-radius-md;
+  padding: $spacing-sm $spacing-lg;
   text-align: center;
-  margin-top: 10px; /* 与列表的间隔 */
+  margin-top: $spacing-md;
+  border: 1px solid $primary-color;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  transition: all $transition-fast;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba($primary-color, 0.2), transparent);
+    transition: all 0.6s;
+  }
+
+  &:hover {
+    background-color: rgba($primary-color, 0.1);
+    box-shadow: $shadow-sm;
+    
+    &:before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  .button-text {
+    color: $primary-color;
+    font-weight: $font-weight-medium;
+    text-align: center;
+  }
 }
 
 .button-text {

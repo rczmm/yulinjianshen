@@ -1,0 +1,91 @@
+// 主题变量文件 - 定义全局样式变量
+
+// 1. 色彩搭配 (Color Palette)
+// 主色调
+$primary-color: #007AFF; // 活力蓝 - 代表专业、信任、科技感
+$primary-light: lighten($primary-color, 20%); // 浅色变体
+$primary-dark: darken($primary-color, 10%); // 深色变体
+
+// 强调/行动色
+$accent-color: #FF9500; // 动感橙 - 用于关键按钮、进度条、重要提示
+$accent-light: lighten($accent-color, 10%);
+$accent-dark: darken($accent-color, 10%);
+
+// 中性色
+// 背景色
+$bg-color: #FFFFFF; // 主背景色
+$bg-color-secondary: #F8F8F8; // 次要背景色
+$bg-color-tertiary: #F2F2F7; // 第三级背景色
+
+// 文字色
+$text-color-primary: #1C1C1E; // 主要文字
+$text-color-secondary: #8E8E93; // 次要文字/提示文字
+$text-color-tertiary: #AEAEB2; // 第三级文字
+
+// 分割线/卡片描边
+$border-color: #E5E5EA;
+
+// 辅助色
+$success-color: #34C759; // 成功/完成
+$warning-color: #FFCC00; // 警告
+$error-color: #FF3B30; // 错误
+$info-color: #007AFF; // 信息
+
+// 2. 字体方案 (Typography)
+// 字体族
+$font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
+
+// 字号层级
+$font-size-large: 22px; // 大标题
+$font-size-medium-large: 18px; // 中大标题
+$font-size-medium: 16px; // 小标题
+$font-size-normal: 14px; // 正文/列表内容
+$font-size-small: 12px; // 次要信息/注释
+
+// 字重
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// 行高
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-loose: 1.8;
+
+// 3. 间距 (Spacing)
+// 基于8px的栅格系统
+$spacing-xxs: 4px;
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// 4. 圆角 (Border Radius)
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-circle: 50%;
+
+// 5. 阴影 (Shadows)
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+// 6. 过渡 (Transitions)
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// 7. z-index层级
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;

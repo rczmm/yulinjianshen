@@ -5,3 +5,12 @@ deploy_versions/
 node_modules/
 .DS_Store
 .swc
+.idea/.gitignore
+.idea/easyCodeTableSettingEncode.xml
+.idea/git_toolbox_blame.xml
+.idea/git_toolbox_prj.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/yulinjianshen.iml
+.idea/inspectionProfiles/Project_Default.xml

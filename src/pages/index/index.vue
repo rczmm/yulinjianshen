@@ -1,31 +1,43 @@
 <template>
   <view class="index">
-    <nut-searchbar v-model="searchValue" placeholder="搜索课程" @search="onSearch"></nut-searchbar>
+    <nut-searchbar
+      v-model="searchValue"
+      placeholder="搜索课程"
+      @search="onSearch"
+      background="#F8F8F8"
+    >
+      <template #leftin>
+        <nut-icon name="search" size="14" color="#8E8E93"></nut-icon>
+      </template>
+    </nut-searchbar>
 
     <nut-swiper
       class="swiper-view"
       :auto-play="3000"
       pagination-visible
+      indicator-color="#AEAEB2"
+      indicator-active-color="#007AFF"
     >
       <nut-swiper-item v-for="(item, index) in swiperList" :key="index">
         <image class="swiper-item" :src="item"></image>
       </nut-swiper-item>
     </nut-swiper>
 
-    <nut-grid :column-num="5">
+    <nut-grid :column-num="5" class="feature-grid" :border="false" :clickable="true">
       <nut-grid-item v-for="(item, index) in gridList" :key="index" :text="item.text" @click="navToPage(item.text)">
-        <nut-avatar size="small">
+        <nut-avatar size="small" class="feature-avatar">
           <image :src="item.icon" style="object-fit: fill;"/>
         </nut-avatar>
       </nut-grid-item>
     </nut-grid>
 
-    <nut-divider></nut-divider>
+    <nut-divider dashed></nut-divider>
 
     <!--    为你推荐-->
     <view class="recommend-view">
       <view class="recommend-title">
         <view class="recommend-title-main">
+          <nut-icon name="fire" color="#FF9500" size="18"></nut-icon>
           <text>为你推荐</text>
         </view>
         <view class="recommend-title-sub">
@@ -34,8 +46,8 @@
       </view>
 
       <view class="recommend-card-list">
-        <view class="recommend-card-item" v-for="(item,index) in recommendList" :key="index">
-
+        <view class="recommend-card-item" v-for="(item,index) in recommendList" :key="index"
+              @click="navToCourseDetail(index)">
           <image :src="item.image" class="recommend-card-image"/>
 
           <view class="recommend-card-title">
@@ -43,11 +55,20 @@
           </view>
 
           <view class="recommend-card-info">
-            <text>{{ item.time }}</text>
-            <text>·</text>
-            <text>{{ item.energy }}</text>
-            <text>·</text>
-            <text>{{ item.level }}</text>
+            <view class="info-item">
+              <nut-icon name="clock" size="12" color="#8E8E93"></nut-icon>
+              <text>{{ item.time }}</text>
+            </view>
+            <text class="dot">·</text>
+            <view class="info-item">
+              <nut-icon name="fire" size="12" color="#8E8E93"></nut-icon>
+              <text>{{ item.energy }}</text>
+            </view>
+            <text class="dot">·</text>
+            <view class="info-item">
+              <nut-icon name="chart-line" size="12" color="#8E8E93"></nut-icon>
+              <text>{{ item.level }}</text>
+            </view>
           </view>
 
         </view>
@@ -55,6 +76,13 @@
     </view>
 
     <nut-divider></nut-divider>
+
+    <view class="featured-programs">
+      <view class="section-title">
+        <nut-icon name="star" color="#007AFF" size="18"></nut-icon>
+        <text>精选训练计划</text>
+      </view>
+    </view>
 
     <RCard
       backgroundImage="https://i0.hdslb.com/bfs/archive/dc71302802b7e99320a9f04414536849325853d8.jpg"
@@ -64,7 +92,7 @@
     ></RCard>
     <RCard
       backgroundImage="https://i1.hdslb.com/bfs/archive/cb398a597840785835f2eb608389f0c5146bb864.jpg"
-      title="关爱打工人，拯救“过年肥”"
+      title="关爱打工人，拯救’过年肥‘"
       description="赶走油腻，节后一身轻"
       :listData="cardListData"
     ></RCard>
@@ -184,6 +212,12 @@ const recommendList = ref([
     time: "6分钟",
     energy: "72千卡",
     level: "零基础"
+  }, {
+    image: "https://i0.hdslb.com/bfs/archive/3d1b25ce0c6785534011b5272e5706ebd4751722.jpg",
+    title: "减脂五分钟体验课",
+    time: "6分钟",
+    energy: "72千卡",
+    level: "零基础"
   }
 ]);
 
@@ -253,109 +287,11 @@ const onSearch = () => {
   }
 };
 
+// 导航到课程详情页
+const navToCourseDetail = (id) => {
+  Taro.navigateTo({
+    url: `/pages/course/index?id=${id}`
+  });
+};
+
 </script>
-
-<style lang="scss">
-.index {
-  font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
-  background-color: #f8f8f8;
-  min-height: 100vh;
-  padding-bottom: 20px;
-
-  .nut-searchbar {
-    margin: 16px;
-  }
-
-  .swiper-view {
-    border-radius: 16px;
-    overflow: hidden;
-    margin: 0 16px;
-
-    .swiper-item {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .nut-grid {
-    margin-top: 16px;
-    background-color: #fff;
-    padding: 16px 0;
-    border-radius: 16px;
-
-    .nut-grid-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .nut-avatar {
-        margin-bottom: 8px;
-        image {
-          border-radius: 50%;
-        }
-      }
-
-      .text {
-        font-size: 14px;
-        color: #333;
-      }
-    }
-  }
-
-  .nut-divider {
-    margin: 20px 16px;
-  }
-
-  .recommend-view {
-    padding: 20px 16px;
-    background-color: #fff;
-    border-radius: 16px;
-    margin: 0 16px;
-
-    .recommend-title {
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
-
-      .recommend-title-main {
-        font-size: 18px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 8px;
-      }
-
-      .recommend-title-sub {
-        font-size: 14px;
-        color: #666;
-      }
-    }
-
-    .recommend-card-list {
-      display: flex;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 10px;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-      .recommend-card-item {
-        flex: 0 0 auto;
-        width: 400px;
-        height: 400px;
-        margin-right: 16px;
-        overflow: hidden;
-
-        .recommend-card-image{
-          height: 76%;
-          width: 100%;
-          object-fit: cover;
-        }
-
-      }
-    }
-  }
-}
-</style>
