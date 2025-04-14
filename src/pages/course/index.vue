@@ -5,15 +5,12 @@
       <view class="title-view">
 
         <view class="title-text">
-
           <view class="title-text-main">
             <text>{{ title }}</text>
           </view>
-
           <view class="title-text-sub">
             <text>{{ desc }}</text>
           </view>
-
         </view>
 
         <view class="title-info">
@@ -55,17 +52,19 @@
       </view>
     </view>
     <view class="tabs-view">
-      <view :class="['tab-item' ,index == 0 ? 'active' : '']" @click="index = 0">
-        <text>动作{{ actionNum }}</text>
+      <view :class="['tab-item', index == 0 ? 'active' : '']" @click="scrollToSection(0)">
+        <text>动作 <text class="tab-count">{{ actionNum }}</text></text>
       </view>
 
-      <view :class="['tab-item' ,index == 1 ? 'active' : '']" @click="index = 1">
-        <text>课程评论{{ commentNum }}</text>
+      <view :class="['tab-item', index == 1 ? 'active' : '']" @click="scrollToSection(1)">
+        <text>课程评论 <text class="tab-count">{{ commentNum }}</text></text>
       </view>
     </view>
-    <view class="action-list">
-      <view class="action-item" v-for="(item, index) in actionList" :key="index">
-        <image class="action-image" :src="item.img"></image>
+
+    <!-- 动作列表内容 -->
+    <view v-if="index === 0" class="action-list">
+      <view class="action-item" v-for="(item, actionIdx) in actionList" :key="actionIdx">
+        <image class="action-image" :src="item.img" mode="aspectFill"></image>
         <view class="action-info">
           <view class="action-title">
             <text>{{ item.title }}</text>
@@ -74,19 +73,24 @@
             <text>{{ item.time }}</text>
           </view>
         </view>
+        <view class="action-arrow">
+          <text class="arrow-icon">></text>
+        </view>
       </view>
     </view>
-    <view class="comment-view">
+
+    <!-- 评论内容 -->
+    <view v-if="index === 1" class="comment-view">
       <view class="comment-desc">
         <view class="comment-title">
           <text>课程评论</text>
         </view>
         <view class="comment-write">
-          <nut-button type="primary" size="small" color="black">写评论</nut-button>
+          <nut-button type="primary" size="small">写评论</nut-button>
         </view>
       </view>
       <view class="comment-list">
-        <view class="comment-item" v-for="(item, index) in commentList" :key="index">
+        <view class="comment-item" v-for="(item, commentIdx) in commentList" :key="commentIdx">
           <view class="comment-info">
             <view class="comment-person">
               <nut-avatar :src="item.avatar" size="small"></nut-avatar>
@@ -136,6 +140,24 @@ const navToMoreComment = (id: string) => {
   Taro.navigateTo({
     url: `/pages/comment/index?id=${id}`
   })
+}
+
+const scrollToSection = (idx: number) => {
+  index.value = idx;
+
+  // 使用nextTick确保DOM已更新
+  setTimeout(() => {
+    const selector = idx === 0 ? '.action-list' : '.comment-view';
+    const query = Taro.createSelectorQuery();
+    query.select(selector).boundingClientRect().exec(res => {
+      if (res && res[0]) {
+        Taro.pageScrollTo({
+          scrollTop: res[0].top - 100, // 减去一些偏移量，使滚动位置更合适
+          duration: 300
+        });
+      }
+    });
+  }, 100);
 }
 
 onMounted(() => {
@@ -230,9 +252,11 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+@import '../../styles/theme';
 
 .page-container {
   padding-bottom: 200px;
+  background-color: $bg-color-secondary;
 }
 
 .back-view {
@@ -240,6 +264,22 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: $shadow-md;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+    z-index: 1;
+  }
 }
 
 .title-view {
@@ -247,42 +287,63 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 30px 20px;
 
   .title-text {
-
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 
     .title-text-main {
       font-size: 40px;
       color: #fff;
-      font-weight: bold;
+      font-weight: $font-weight-bold;
+      margin-bottom: 10px;
     }
 
     .title-text-sub {
       font-size: 20px;
       color: #fff;
-      font-weight: bold;
+      font-weight: $font-weight-medium;
+      opacity: 0.9;
     }
   }
 
   .title-info {
-    width: 400px;
-    font-size: 40px;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    font-size: 36px;
     color: #fff;
-    font-weight: bold;
+    font-weight: $font-weight-semibold;
     display: flex;
     justify-content: space-between;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: $border-radius-lg;
+    padding: 15px;
 
     .course-time, .course-energy, .course-level {
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      .content {
+        color: #fff;
+        font-size: 32px;
+        margin-bottom: 5px;
+      }
+
+      .style {
+        font-size: 14px;
+        opacity: 0.8;
+      }
     }
-
   }
-
 }
 
 .practice-frequency {
@@ -291,112 +352,225 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 15px 20px;
+  background-color: $bg-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+
+  .desc {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-medium;
+    color: $text-color-primary;
+    margin-bottom: 8px;
+  }
+
+  .content {
+    font-size: $font-size-normal;
+    color: $text-color-secondary;
+  }
 }
 
 .tabs-view {
   display: flex;
   justify-content: space-around;
-  padding: 20px;
-  border: 2px solid #ccc;
-  color: #ccc;
+  padding: 15px 20px;
+  margin: 0 15px 15px;
+  background-color: $bg-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
 
   .tab-item {
+    padding: 8px 15px;
+    font-size: $font-size-medium;
+    color: $text-color-secondary;
+    position: relative;
+    transition: all 0.3s ease;
+
+    .tab-count {
+      display: inline-block;
+      margin-left: 5px;
+      font-weight: $font-weight-medium;
+      color: $primary-color;
+    }
+
     &.active {
-      color: black;
-      border-bottom: 3px solid yellow;
-      padding-bottom: 4px;
+      color: $primary-color;
+      font-weight: $font-weight-medium;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: $accent-color;
+        border-radius: 3px;
+      }
     }
   }
+}
 
+.action-list {
+  margin: 0 15px;
+  background-color: $bg-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
 }
 
 .action-item {
-  margin-top: 2px;
   display: flex;
   align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid $border-color;
+  transition: background-color 0.2s ease;
 
-  border-bottom: 2px solid #ccc;
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:active {
+    background-color: $bg-color-tertiary;
+  }
 
   .action-image {
     object-fit: cover;
-    height: 200rpx;
-    width: 200rpx;
+    height: 120rpx;
+    width: 120rpx;
     margin-right: 20px;
+    border-radius: $border-radius-sm;
+    box-shadow: $shadow-sm;
   }
 
   .action-info {
-    padding: 10px;
+    flex: 1;
+
+    .action-title {
+      font-size: $font-size-medium;
+      font-weight: $font-weight-medium;
+      color: $text-color-primary;
+      margin-bottom: 8px;
+    }
+
+    .action-time {
+      font-size: $font-size-small;
+      color: $text-color-secondary;
+    }
   }
 
+  .action-arrow {
+    color: $text-color-tertiary;
+    font-size: 18px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 
+.comment-view {
+  margin: 20px 15px;
+  background-color: $bg-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
 }
 
 .comment-desc {
-  /* 调整顶部边框 */
-  border-top: 1px solid #eee; /* 更细更轻的边框 */
   display: flex;
   justify-content: space-between;
-  align-items: center; /* 垂直居中对齐标题和按钮 */
-  padding: 10rpx 40rpx; /* 调整内边距，代替部分外边距 */
-  margin: 0 40rpx 20rpx 40rpx; /* 缩小顶部外边距 */
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid $border-color;
+
+  .comment-title {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-medium;
+    color: $text-color-primary;
+  }
+
+  .comment-write {
+    .nut-button {
+      background-color: $primary-color;
+      border: none;
+      border-radius: $border-radius-sm;
+      font-size: $font-size-small;
+      padding: 5px 12px;
+    }
+  }
 }
 
-.comment-desc, .comment-title {
-  font-size: 32rpx; /* 调整标题字体大小 */
-  color: #333;
-}
-
-.comment-desc .comment-write {
-  display: flex;
-  align-items: center; /* 使图标和文字垂直居中 */
-  padding: 10rpx 20rpx;
-  border-radius: 8rpx;
-  font-size: 28rpx;
-  color: #666;
+.comment-list {
+  padding: 10px 0;
 }
 
 .comment-item {
   display: flex;
   flex-direction: column;
-  margin: 0 20rpx;
-  padding: 20rpx 0; /* 添加垂直内边距以增加空白 */
-  border-bottom: 1px solid #eee; /* 更细更轻的底部边框 */
-}
+  padding: 15px 20px;
+  border-bottom: 1px solid $border-color;
 
-.comment-item:last-child {
-  border-bottom: none; /* 移除最后一个评论项的底部边框 */
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .comment-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10rpx; /* 增加用户信息和评论内容之间的间距 */
-  gap: 16rpx; /* 头像和作者名/时间戳/评论数之间的间距 */
-}
+  margin-bottom: 10px;
 
-.comment-person {
-  display: flex;
-  align-items: center;
-  gap: 10rpx; /* 头像和作者名之间的间距 */
+  .comment-person {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text {
+      font-size: $font-size-normal;
+      color: $text-color-primary;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  .comment-num {
+    font-size: $font-size-small;
+    color: $text-color-secondary;
+  }
 }
 
 .comment-content {
-  font-size: 28rpx; /* 评论内容字体大小 */
-  line-height: 1.6; /* 行高 */
-  color: #666;
-  /* 多行文本溢出处理 */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
+  font-size: $font-size-normal;
+  line-height: 1.6;
+  color: $text-color-secondary;
+  padding-left: 5px;
+}
+
+.comment-more {
+  .nut-cell {
+    padding: 15px 20px;
+    color: $primary-color;
+    font-size: $font-size-normal;
+  }
 }
 
 .add-course {
   position: fixed;
   bottom: 0;
-  width: 100%;
-  border-radius: 5px;
+  left: 0;
+  right: 0;
+  padding: 15px 20px 30px;
+  background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0.9));
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  z-index: 10;
+
+  .nut-button {
+    background: linear-gradient(to right, $primary-color, $accent-color);
+    border: none;
+    border-radius: $border-radius-md;
+    font-weight: $font-weight-medium;
+    box-shadow: $shadow-md;
+  }
 }
-
-
 </style>

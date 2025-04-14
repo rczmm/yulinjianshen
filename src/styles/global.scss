@@ -1,0 +1,152 @@
+// 全局样式文件
+@import 'theme';
+
+// 全局样式规则
+body {
+  font-family: $font-family;
+  color: $text-color-primary;
+  background-color: $bg-color-secondary;
+  line-height: $line-height-normal;
+  font-size: $font-size-normal;
+}
+
+// 按钮样式
+.nut-button {
+  &--primary {
+    background-color: $primary-color;
+    &:active {
+      background-color: $primary-dark;
+    }
+  }
+
+  &--info {
+    background-color: $info-color;
+  }
+
+  &--success {
+    background-color: $success-color;
+  }
+
+  &--danger {
+    background-color: $error-color;
+  }
+
+  &--warning {
+    background-color: $warning-color;
+  }
+}
+
+// 卡片样式
+.card {
+  background-color: $bg-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+// 标题样式
+h1, .h1 {
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-md;
+}
+
+h2, .h2 {
+  font-size: $font-size-medium-large;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-sm;
+}
+
+h3, .h3 {
+  font-size: $font-size-medium;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-sm;
+}
+
+// 文本样式
+.text-primary {
+  color: $primary-color;
+}
+
+.text-accent {
+  color: $accent-color;
+}
+
+.text-success {
+  color: $success-color;
+}
+
+.text-warning {
+  color: $warning-color;
+}
+
+.text-error {
+  color: $error-color;
+}
+
+.text-info {
+  color: $info-color;
+}
+
+// 辅助类
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+// 间距类
+.m-xs { margin: $spacing-xs; }
+.m-sm { margin: $spacing-sm; }
+.m-md { margin: $spacing-md; }
+.m-lg { margin: $spacing-lg; }
+
+.mt-xs { margin-top: $spacing-xs; }
+.mt-sm { margin-top: $spacing-sm; }
+.mt-md { margin-top: $spacing-md; }
+.mt-lg { margin-top: $spacing-lg; }
+
+.mb-xs { margin-bottom: $spacing-xs; }
+.mb-sm { margin-bottom: $spacing-sm; }
+.mb-md { margin-bottom: $spacing-md; }
+.mb-lg { margin-bottom: $spacing-lg; }
+
+.p-xs { padding: $spacing-xs; }
+.p-sm { padding: $spacing-sm; }
+.p-md { padding: $spacing-md; }
+.p-lg { padding: $spacing-lg; }

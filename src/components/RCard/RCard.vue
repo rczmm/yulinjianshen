@@ -1,5 +1,5 @@
 <template>
-  <view class="card-container" :style="{ backgroundImage: `url(${backgroundImage})` }">
+  <view class="card-container" :style="{ background: gradientBackground }">
     <view class="card-content">
       <view class="title-description">
         <text class="title">{{ title }}</text>
@@ -29,9 +29,25 @@
 </template>
 
 <script setup>
-import {defineProps} from 'vue';
+import {defineProps, computed, ref} from 'vue';
 import './RCard.scss';
 import Taro from '@tarojs/taro';
+
+// 定义多种渐变背景方案，基于主题色系统
+const gradientBackgrounds = [
+  'linear-gradient(135deg, #007AFF, #34C759)', // 蓝色到绿色
+  'linear-gradient(135deg, #007AFF, #5856D6)', // 蓝色到紫色
+  'linear-gradient(135deg, #FF9500, #FF3B30)', // 橙色到红色
+  'linear-gradient(135deg, #FF9500, #FFCC00)', // 橙色到黄色
+  'linear-gradient(135deg, #5856D6, #007AFF)', // 紫色到蓝色
+  'linear-gradient(135deg, #34C759, #007AFF)', // 绿色到蓝色
+  'linear-gradient(135deg, #FF3B30, #FF9500)', // 红色到橙色
+  'linear-gradient(135deg, #007AFF, #FF9500)', // 蓝色到橙色（主色到强调色）
+];
+
+// 随机选择一个渐变背景
+const randomIndex = Math.floor(Math.random() * gradientBackgrounds.length);
+const gradientBackground = ref(gradientBackgrounds[randomIndex]);
 
 const navToTopic = (title) => {
   Taro.navigateTo({
@@ -46,7 +62,6 @@ const navToCourse = (id) => {
 };
 
 const props = defineProps({
-  backgroundImage: String,
   title: String,
   description: String,
   listData: {

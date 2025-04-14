@@ -1,9 +1,8 @@
 <template>
   <view class="Course-view">
     <view class="title-view"
-          :style="{backgroundImage: `url(${backgroundImage})`,    backgroundSize: 'cover',backgroundRepeat: 'no-repeat'}">
+          :style="{backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}">
       <view class="title-text-view">
-
         <view class="title-main">
           <text>{{ mainTitle }}</text>
         </view>
@@ -11,7 +10,6 @@
         <view class="title-sub">
           <text>{{ subTitle }}</text>
         </view>
-
       </view>
     </view>
 
@@ -78,24 +76,33 @@ onMounted(() => {
       fail: () => {
         mainTitle.value = '这是大标题';
         subTitle.value = '这是副标题';
-        courseDesc.value = '这是课程描述';
+        courseDesc.value = '这是课程描述，详细介绍了课程的内容和特点。通过这个专题，你将学习到相关的知识和技能，提升自己的能力水平。';
         dataList.value = [
           {
             id: 1,
-            title: '这是课程标题',
-            time: '5分钟',
+            title: '初级入门训练',
+            time: '15分钟',
             level: '零基础',
-            energy: '35千卡',
-            count: '101010人已参与',
+            energy: '45千卡',
+            count: '10,568人已参与',
             img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif'
           },
           {
             id: 2,
-            title: '这是课程标题',
-            time: '5分钟',
-            level: '零基础',
-            energy: '35千卡',
-            count: '101010人已参与',
+            title: '进阶强化训练',
+            time: '25分钟',
+            level: '中级',
+            energy: '120千卡',
+            count: '8,742人已参与',
+            img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif'
+          },
+          {
+            id: 3,
+            title: '专业塑形训练',
+            time: '30分钟',
+            level: '高级',
+            energy: '180千卡',
+            count: '5,321人已参与',
             img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif'
           },
         ]

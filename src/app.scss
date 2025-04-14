@@ -1,1 +1,29 @@
 @import "@nutui/icons-vue/dist/style_iconfont.css";
+@import "./styles/global.scss";
+
+// 全局样式覆盖
+:root {
+  // NutUI 组件库样式变量覆盖
+  --nut-primary-color: #007AFF;
+  --nut-primary-color-end: #007AFF;
+  --nut-primary-text-color: #007AFF;
+  --nut-primary-background-color: #007AFF;
+  
+  --nut-help-color: #FF9500;
+  --nut-success-color: #34C759;
+  --nut-warning-color: #FFCC00;
+  --nut-danger-color: #FF3B30;
+  
+  --nut-font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
+  
+  // 文字大小
+  --nut-font-size-large: 22px;
+  --nut-font-size-medium: 16px;
+  --nut-font-size-base: 14px;
+  --nut-font-size-small: 12px;
+  
+  // 圆角
+  --nut-button-border-radius: 8px;
+  --nut-cell-border-radius: 8px;
+  --nut-avatar-border-radius: 8px;
+}
