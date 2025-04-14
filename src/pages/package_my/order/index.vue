@@ -276,7 +276,7 @@ const deleteOrder = (id) => {
             icon: 'success',
             duration: 2000
           });
-          
+
           // 从列表中移除该订单
           const index = orderList.value.findIndex(item => item.id === id);
           if (index !== -1) {
@@ -304,7 +304,7 @@ const goShopping = () => {
 
   .page-header {
     margin-bottom: 20px;
-    
+
     .header-title {
       font-size: 20px;
       font-weight: bold;

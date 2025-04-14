@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="737fb921-8b96-405d-bf80-9b98955c5e7e" name="更改" comment="refactor(package-my): 优化文章和动作详情页面样式&#10;&#10;-调整了文章和动作详情页面的整体布局和样式&#10;-优化了标题、段落、列表等元素的样式&#10;- 统一了按钮和加载状态的样式&#10;- 修复了一些样式上的小问题" />
+    <list default="true" id="737fb921-8b96-405d-bf80-9b98955c5e7e" name="更改" comment="refactor(package_my): 优化订单页面功能和样式&#10;&#10;- 完善订单删除逻辑，更新订单列表&#10;- 添加去购买功能，跳转到首页&#10;- 优化订单列表样式，增加空状态展示- 调整订单项样式，突出重要信息&#10;- 移除未使用的 NutLoading 组件引用">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_cache/_logs/2025-03-16T04_02_56_249Z-debug-0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/package_my/order/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/package_my/order/index.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,6 +115,7 @@
       <workItem from="1743233108216" duration="7973000" />
       <workItem from="1743260181697" duration="13342000" />
       <workItem from="1744642411786" duration="58000" />
+      <workItem from="1744648406594" duration="516000" />
     </task>
     <task id="LOCAL-00001" summary="feat(pages): 新增大师课堂功能&#10;&#10;- 添加大师课堂列表页面和详情页面&#10;- 实现课程数据请求和展示&#10;- 更新首页导航，增加大师课堂入口&#10;- 添加新页面的路由配置">
       <option name="closed" value="true" />
@@ -168,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743320277629</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refactor(package_my): 优化订单页面功能和样式&#10;&#10;- 完善订单删除逻辑，更新订单列表&#10;- 添加去购买功能，跳转到首页&#10;- 优化订单列表样式，增加空状态展示- 调整订单项样式，突出重要信息&#10;- 移除未使用的 NutLoading 组件引用">
+      <option name="closed" value="true" />
+      <created>1744648449902</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1744648449902</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +195,7 @@
     <MESSAGE value="style(index): 调整首页卡片样式和布局&#10;&#10;- 移除 scoped 属性以使用全局样式&#10;- 增加卡片尺寸和高度，优化布局&#10;- 添加图片对象适应样式，确保图片显示正确" />
     <MESSAGE value="feat(config): 优化 unplugin-vue-components 插件配置&#10;&#10;- 在 webpack 配置中添加 dts 和 include 选项&#10;- 新增 article 和 coupon 页面组件&#10;- 优化 coupon 页面样式和逻辑- 添加 use Coupon 页面组件" />
     <MESSAGE value="refactor(package-my): 优化文章和动作详情页面样式&#10;&#10;-调整了文章和动作详情页面的整体布局和样式&#10;-优化了标题、段落、列表等元素的样式&#10;- 统一了按钮和加载状态的样式&#10;- 修复了一些样式上的小问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(package-my): 优化文章和动作详情页面样式&#10;&#10;-调整了文章和动作详情页面的整体布局和样式&#10;-优化了标题、段落、列表等元素的样式&#10;- 统一了按钮和加载状态的样式&#10;- 修复了一些样式上的小问题" />
+    <MESSAGE value="refactor(package_my): 优化订单页面功能和样式&#10;&#10;- 完善订单删除逻辑，更新订单列表&#10;- 添加去购买功能，跳转到首页&#10;- 优化订单列表样式，增加空状态展示- 调整订单项样式，突出重要信息&#10;- 移除未使用的 NutLoading 组件引用" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(package_my): 优化订单页面功能和样式&#10;&#10;- 完善订单删除逻辑，更新订单列表&#10;- 添加去购买功能，跳转到首页&#10;- 优化订单列表样式，增加空状态展示- 调整订单项样式，突出重要信息&#10;- 移除未使用的 NutLoading 组件引用" />
   </component>
 </project>
