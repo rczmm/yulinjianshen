@@ -273,10 +273,189 @@ const deleteOrder = (id) => {
           Taro.hideLoading();
           Taro.showToast({
             title:'已删除订单',
-          })
-        })
+            icon: 'success',
+            duration: 2000
+          });
+          
+          // 从列表中移除该订单
+          const index = orderList.value.findIndex(item => item.id === id);
+          if (index !== -1) {
+            orderList.value.splice(index, 1);
+          }
+        }, 1000);
       }
     }
-  })
+  });
+};
+
+// 去购买
+const goShopping = () => {
+  Taro.switchTab({
+    url: '/pages/index/index'
+  });
 };
 </script>
+
+<style lang="scss">
+.order-container {
+  padding: 20px;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+
+  .page-header {
+    margin-bottom: 20px;
+    
+    .header-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  .order-filter {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .order-list {
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+      .empty-image {
+        width: 200px;
+        height: 150px;
+        margin-bottom: 15px;
+      }
+
+      .empty-text {
+        font-size: 16px;
+        color: #999;
+        margin-bottom: 15px;
+      }
+    }
+
+    .order-item {
+      margin-bottom: 15px;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        border-bottom: 1px solid #f0f0f0;
+
+        .order-number {
+          font-size: 14px;
+          color: #666;
+        }
+
+        .order-status {
+          font-size: 14px;
+          font-weight: bold;
+
+          &.status-unpaid {
+            color: #ff6b00;
+          }
+
+          &.status-unused {
+            color: #2979ff;
+          }
+
+          &.status-completed {
+            color: #07c160;
+          }
+
+          &.status-canceled {
+            color: #999;
+          }
+        }
+      }
+
+      .order-content {
+        padding: 15px;
+
+        .product-info {
+          display: flex;
+
+          .product-image {
+            width: 80px;
+            height: 80px;
+            margin-right: 12px;
+            border-radius: 4px;
+            overflow: hidden;
+
+            image {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .product-details {
+            flex: 1;
+
+            .product-name {
+              font-size: 16px;
+              font-weight: bold;
+              color: #333;
+              margin-bottom: 6px;
+            }
+
+            .product-desc {
+              font-size: 14px;
+              color: #666;
+              margin-bottom: 8px;
+            }
+
+            .product-price {
+              font-size: 16px;
+              color: #ff4d4f;
+              font-weight: bold;
+
+              .price-symbol {
+                font-size: 14px;
+              }
+
+              .price-value {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+
+      .order-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        border-top: 1px solid #f0f0f0;
+        background-color: #fafafa;
+
+        .order-time {
+          font-size: 12px;
+          color: #999;
+        }
+
+        .order-actions {
+          display: flex;
+          gap: 8px;
+        }
+      }
+    }
+  }
+}
+</style>
