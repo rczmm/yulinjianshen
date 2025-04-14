@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="737fb921-8b96-405d-bf80-9b98955c5e7e" name="更改" comment="refactor(package_my): 优化订单页面功能和样式&#10;&#10;- 完善订单删除逻辑，更新订单列表&#10;- 添加去购买功能，跳转到首页&#10;- 优化订单列表样式，增加空状态展示- 调整订单项样式，突出重要信息&#10;- 移除未使用的 NutLoading 组件引用">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_cache/_logs/2025-03-16T04_02_56_249Z-debug-0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/package_my/order/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/package_my/order/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_cache/_logs/2025-03-29T07_26_44_295Z-debug-0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/comment/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/comment/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +115,7 @@
       <workItem from="1743233108216" duration="7973000" />
       <workItem from="1743260181697" duration="13342000" />
       <workItem from="1744642411786" duration="58000" />
-      <workItem from="1744648406594" duration="516000" />
+      <workItem from="1744648406594" duration="1097000" />
     </task>
     <task id="LOCAL-00001" summary="feat(pages): 新增大师课堂功能&#10;&#10;- 添加大师课堂列表页面和详情页面&#10;- 实现课程数据请求和展示&#10;- 更新首页导航，增加大师课堂入口&#10;- 添加新页面的路由配置">
       <option name="closed" value="true" />
@@ -181,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744648449902</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="refactor(package_my): 优化订单页面功能和样式&#10;&#10;- 完善订单删除逻辑，更新订单列表&#10;- 添加去购买功能，跳转到首页&#10;- 优化订单列表样式，增加空状态展示- 调整订单项样式，突出重要信息&#10;- 移除未使用的 NutLoading 组件引用">
+      <option name="closed" value="true" />
+      <created>1744649000625</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1744649000625</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

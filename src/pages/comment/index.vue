@@ -147,19 +147,19 @@ const loadMockData = () => {
   .nut-cell {
     padding: $spacing-md $spacing-lg;
     background-color: transparent;
-    
+
     &::after {
       border-bottom: 1px solid $border-color;
       left: $spacing-lg;
       right: $spacing-lg;
     }
-    
+
     .nut-cell__title {
       font-size: $font-size-medium;
       font-weight: $font-weight-semibold;
       color: $text-color-primary;
     }
-    
+
     .nut-cell__value {
       font-size: $font-size-small;
       color: $primary-color;
@@ -176,7 +176,7 @@ const loadMockData = () => {
 .comment-item {
   padding: $spacing-md 0;
   transition: background-color $transition-fast;
-  
+
   &:hover {
     background-color: rgba($primary-light, 0.05);
   }
@@ -217,7 +217,7 @@ const loadMockData = () => {
     background-color: rgba($accent-color, 0.1);
     padding: $spacing-xxs $spacing-xs;
     border-radius: $border-radius-sm;
-    
+
     .nut-icon {
       margin-right: 4px;
     }
@@ -260,7 +260,6 @@ const loadMockData = () => {
   }
 
   &__input {
-    // 覆盖 NutUI Input 样式
     :deep(.nut-input-inner) {
       background-color: $bg-color-tertiary;
       border-radius: 18px;
@@ -269,27 +268,21 @@ const loadMockData = () => {
       font-size: $font-size-normal;
       color: $text-color-primary;
     }
-    
-    :deep(input::placeholder) {
-      color: $text-color-secondary;
+    &__button {
+      background-color: $accent-color !important;
+      border-color: $accent-color !important;
+      color: $bg-color !important;
+      padding: $spacing-xs $spacing-md;
+      border-radius: 18px;
+      box-shadow: none;
+      border: none;
       font-size: $font-size-normal;
-    }
-  }
+      font-weight: $font-weight-medium;
+      transition: opacity $transition-fast;
 
-  &__button {
-    background-color: $accent-color !important;
-    border-color: $accent-color !important;
-    color: $bg-color !important;
-    padding: $spacing-xs $spacing-md;
-    border-radius: 18px;
-    box-shadow: none;
-    border: none;
-    font-size: $font-size-normal;
-    font-weight: $font-weight-medium;
-    transition: opacity $transition-fast;
-    
-    &:active {
-      opacity: 0.8;
+      &:active {
+        opacity: 0.8;
+      }
     }
   }
 }
