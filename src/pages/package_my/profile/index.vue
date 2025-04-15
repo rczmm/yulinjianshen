@@ -9,6 +9,44 @@
     <!-- Profile Form Card -->
     <view class="profile-card">
       <nut-form>
+        <!-- VIP Section -->
+        <nut-form-item class="vip-item">
+          <template #label>
+            <view class="form-label">会员状态</view>
+          </template>
+          <view class="vip-status">
+            <view v-if="userInfo.isVip" class="vip-active">
+              <view class="vip-badge">
+                <nut-icon name="star-fill" color="#FFD700" size="20" />
+                <text class="vip-text">VIP会员</text>
+              </view>
+              <view class="vip-info">
+                <text class="vip-validity">有效期至: {{ userInfo.vipEndDate || '2023-12-31' }}</text>
+                <view class="vip-benefits">
+                  <text class="benefit-tag">专属特权</text>
+                  <text class="benefit-tag">课程折扣</text>
+                  <text class="benefit-tag">优先预约</text>
+                </view>
+              </view>
+              <nut-button type="info" size="small" @click="goToVipPage" class="vip-manage-btn">管理</nut-button>
+            </view>
+            <view v-else class="vip-inactive">
+              <view class="vip-badge">
+                <nut-icon name="star" color="#999" size="20" />
+                <text class="vip-text">非VIP会员</text>
+              </view>
+              <view class="vip-promo">
+                <text class="promo-text">开通VIP享受专属特权和优惠</text>
+                <view class="vip-benefits">
+                  <text class="benefit-tag inactive">专属特权</text>
+                  <text class="benefit-tag inactive">课程折扣</text>
+                  <text class="benefit-tag inactive">优先预约</text>
+                </view>
+              </view>
+              <nut-button type="primary" size="small" @click="goToVipPage" class="vip-open-btn">开通VIP</nut-button>
+            </view>
+          </view>
+        </nut-form-item>
         <!-- Avatar Section -->
         <nut-form-item class="avatar-item">
           <template #label>
@@ -116,7 +154,10 @@ const userInfo = ref({
   gender: '1', // Default to '1' (Male)
   age: '',
   level: '',
-  bio: ''
+  bio: '',
+  isVip: false, // VIP状态字段
+  vipEndDate: '', // VIP到期日期
+  vipType: '' // VIP类型（月卡、季卡、年卡）
 });
 
 // 页面加载时获取用户信息
@@ -130,7 +171,10 @@ onMounted(() => {
       gender: '1',
       age: '28',
       level: '中级',
-      bio: '热爱运动，享受生活。目标是成为更好的自己！💪'
+      bio: '热爱运动，享受生活。目标是成为更好的自己！💪',
+      isVip: true, // 模拟VIP状态，可以切换为false测试非VIP状态
+      vipEndDate: '2023-12-31', // 模拟VIP到期日期
+      vipType: '年卡' // 模拟VIP类型
     };
     Taro.hideLoading();
   }, 800);
@@ -195,11 +239,19 @@ const saveProfile = () => {
     // }, 1500);
   }, 1800);
 };
+
+// 跳转到VIP开通/管理页面
+const goToVipPage = () => {
+  Taro.navigateTo({ url: '/pages/package_my/membership/index' });
+};
 </script>
 
 <style lang="scss">
 $primary-color: #1f78ff; // Example primary color
 $primary-color-light: #e6f0ff;
+$vip-gold: #FFD700;
+$vip-gold-light: #FFF8E1;
+$vip-gradient: linear-gradient(135deg, #FFD700, #FFA000);
 $bg-color: #f7f8fa; // Light background
 $card-bg-color: #ffffff;
 $text-color: #333333;
@@ -212,6 +264,7 @@ $spacing-sm: 8px;
 $spacing-md: 16px;
 $spacing-lg: 24px;
 $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-vip: 0 4px 15px rgba(255, 215, 0, 0.25);
 
 .profile-container {
   background-color: $bg-color;
@@ -269,6 +322,100 @@ $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
     .nut-cell__value {
        flex: 1;
        text-align: right; // Align input content to the right
+    }
+
+    // VIP Item Styling
+    &.vip-item {
+      padding: $spacing-md 0 $spacing-lg;
+      
+      .vip-status {
+        width: 100%;
+      }
+      
+      .vip-active, .vip-inactive {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $spacing-md;
+        border-radius: $border-radius-base;
+        transition: all 0.3s ease;
+      }
+      
+      .vip-active {
+        background: $vip-gold-light;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        box-shadow: $shadow-vip;
+      }
+      
+      .vip-inactive {
+        background: #f9f9f9;
+        border: 1px solid #eee;
+      }
+      
+      .vip-badge {
+        display: flex;
+        align-items: center;
+        
+        .vip-text {
+          margin-left: $spacing-sm;
+          font-weight: 600;
+          font-size: 15px;
+        }
+      }
+      
+      .vip-info, .vip-promo {
+        flex: 1;
+        padding: 0 $spacing-md;
+      }
+      
+      .vip-validity {
+        display: block;
+        font-size: 12px;
+        color: $text-color-secondary;
+        margin-bottom: $spacing-sm;
+      }
+      
+      .vip-benefits {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      
+      .benefit-tag {
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background-color: rgba(255, 215, 0, 0.2);
+        color: #B8860B;
+        
+        &.inactive {
+          background-color: #f0f0f0;
+          color: #999;
+        }
+      }
+      
+      .promo-text {
+        display: block;
+        font-size: 12px;
+        color: $text-color-secondary;
+        margin-bottom: $spacing-sm;
+      }
+      
+      .vip-manage-btn, .vip-open-btn {
+        flex-shrink: 0;
+      }
+      
+      .vip-manage-btn {
+        --nut-button-info-background-color: rgba(255, 215, 0, 0.15);
+        --nut-button-info-border-color: rgba(255, 215, 0, 0.3);
+        --nut-button-info-color: #B8860B;
+      }
+      
+      .vip-open-btn {
+        --nut-button-primary-background-color: $vip-gradient;
+        --nut-button-primary-border-color: #FFA000;
+        box-shadow: 0 4px 8px rgba(255, 160, 0, 0.3);
+      }
     }
 
     // Specific styling for avatar item
@@ -392,20 +539,21 @@ $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .form-textarea {
-  // Adjust positioning within the form item
-  width: 100%; // Take full width in its cell
-  margin-top: $spacing-sm; // Add margin if label is above
+  width: 100%;
+  margin-top: $spacing-sm;
+  position: relative;
+  padding-bottom: 24px; // 为字数限制腾出空间
 }
 
 .form-textarea .nut-textarea__textarea {
-  text-align: left; // Textarea usually aligned left
+  text-align: left;
   font-size: 15px;
   color: $text-color;
-  background-color: #fdfdfd; // Slightly different bg for textarea
+  background-color: #fdfdfd;
   border: 1px solid $border-color;
   border-radius: $border-radius-base;
   padding: $spacing-sm $spacing-md;
-  min-height: 80px; // Ensure a minimum height
+  min-height: 120px; // 增加最小高度
 }
 
 .form-textarea .nut-textarea__textarea::placeholder {
@@ -413,24 +561,40 @@ $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .form-textarea .nut-textarea__limit {
-  text-align: right; // Align limit count
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: $text-color-secondary;
+  font-size: 12px;
+  padding: 4px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &::before {
+    content: "已输入";
+    margin-right: 4px;
+  }
 }
 
 // --- Actions ---
 .form-actions {
-  padding: $spacing-lg $spacing-md 0; // Padding around the button
+  padding: $spacing-lg $spacing-md 0; // 增加上部间距
 
   .save-button {
-    // Use NutUI props first, then add custom styles
-    --nut-button-primary-background-color: $primary-color; // Custom primary color
-    --nut-button-primary-border-color: $primary-color;
-    font-weight: 500;
-    letter-spacing: 1px; // Add some letter spacing
-    box-shadow: 0 4px 10px rgba($primary-color, 0.3); // Subtle shadow
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    --nut-button-primary-background-color: #2979ff; // 更鲜艳的蓝色
+    --nut-button-primary-border-color: #2979ff;
+    --nut-button-primary-color: #ffffff; // 确保文字为白色
+    font-size: 16px;
+    font-weight: 600;
+    height: 44px; // 增加按钮高度
+    letter-spacing: 2px;
+    box-shadow: 0 6px 16px rgba(41, 121, 255, 0.4); // 更明显的阴影
+    transition: all 0.2s ease;
 
     &:active {
-      transform: scale(0.98); // Press effect
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(41, 121, 255, 0.3);
     }
   }
 }
