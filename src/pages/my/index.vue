@@ -22,22 +22,22 @@
         <nut-grid>
           <nut-grid-item text="训练记录" @click="navToPage('训练记录')">
             <nut-avatar size="small">
-              <image src="https://cdn0.iconfinder.com/data/icons/fitness-and-gym-7/24/fitness-and-gym-09-64.png" style="object-fit: fill;"/>
+              <image src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" style="object-fit: fill;"/>
             </nut-avatar>
           </nut-grid-item>
           <nut-grid-item text="我的课程" @click="navToPage('我的课程')">
             <nut-avatar size="small">
-              <image src="https://cdn0.iconfinder.com/data/icons/fitness-and-gym-7/24/fitness-and-gym-19-64.png" style="object-fit: fill;"/>
+              <image src="https://cdn-icons-png.flaticon.com/512/2548/2548374.png" style="object-fit: fill;"/>
             </nut-avatar>
           </nut-grid-item>
           <nut-grid-item text="收藏" @click="navToPage('收藏')">
             <nut-avatar size="small">
-              <image src="https://cdn0.iconfinder.com/data/icons/fitness-and-gym-7/24/fitness-and-gym-15-64.png" style="object-fit: fill;"/>
+              <image src="https://cdn-icons-png.flaticon.com/512/2312/2312894.png" style="object-fit: fill;"/>
             </nut-avatar>
           </nut-grid-item>
           <nut-grid-item text="健身计划" @click="navToPage('健身计划')">
             <nut-avatar size="small">
-              <image src="https://cdn0.iconfinder.com/data/icons/fitness-and-gym-7/24/fitness-and-gym-01-64.png" style="object-fit: fill;"/>
+              <image src="https://cdn-icons-png.flaticon.com/512/2382/2382461.png" style="object-fit: fill;"/>
             </nut-avatar>
           </nut-grid-item>
         </nut-grid>
@@ -49,22 +49,22 @@
         <nut-grid>
           <nut-grid-item text="私教课程" @click="navToPage('私教课程')">
             <nut-avatar size="small">
-              <image src="https://cdn0.iconfinder.com/data/icons/fitness-and-gym-7/24/fitness-and-gym-02-64.png" style="object-fit: fill;"/>
+              <image src="https://cdn-icons-png.flaticon.com/512/2548/2548531.png" style="object-fit: fill;"/>
             </nut-avatar>
           </nut-grid-item>
           <nut-grid-item text="会员卡" @click="navToPage('会员卡')">
             <nut-avatar size="small">
-              <image src="https://cdn0.iconfinder.com/data/icons/fitness-and-gym-7/24/fitness-and-gym-13-64.png" style="object-fit: fill;"/>
+              <image src="https://cdn-icons-png.flaticon.com/512/1728/1728729.png" style="object-fit: fill;"/>
             </nut-avatar>
           </nut-grid-item>
           <nut-grid-item text="优惠券" @click="navToPage('优惠券')">
             <nut-avatar size="small">
-              <image src="https://cdn0.iconfinder.com/data/icons/fitness-and-gym-7/24/fitness-and-gym-11-64.png" style="object-fit: fill;"/>
+              <image src="https://cdn-icons-png.flaticon.com/512/879/879762.png" style="object-fit: fill;"/>
             </nut-avatar>
           </nut-grid-item>
           <nut-grid-item text="订单" @click="navToPage('订单')">
             <nut-avatar size="small">
-              <image src="https://cdn0.iconfinder.com/data/icons/fitness-and-gym-7/24/fitness-and-gym-05-64.png" style="object-fit: fill;"/>
+              <image src="https://cdn-icons-png.flaticon.com/512/3500/3500833.png" style="object-fit: fill;"/>
             </nut-avatar>
           </nut-grid-item>
         </nut-grid>

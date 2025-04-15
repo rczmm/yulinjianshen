@@ -108,20 +108,6 @@ import { ref, onMounted } from 'vue';
 import Taro from '@tarojs/taro';
 import '@nutui/nutui-taro/dist/style.css'; // Ensure NutUI styles are imported
 
-/*
- * 页面内容概述：
- * 这是一个个人资料页面，用于展示和编辑用户的个人信息。
- *
- * 主要功能：
- * 1. 展示用户的个人信息，包括头像、昵称、性别、年龄、健身等级和个人简介。
- * 2. 允许用户修改个人信息，并保存到服务器。
- * 3. 支持用户选择新的头像图片。
- *
- * 关键信息：
- * - 页面使用了 NutUI 组件库，表明这是一个基于 Vue.js 的移动应用。
- * - 页面加载时会获取用户的当前信息。
- * - 默认头像 URL: 'https://i0.hdslb.com/bfs/archive/03ec2bfe5e369a8b8e73ba4d2816caf8835cb2f7.jpg'
- */
 
 // 用户信息
 const userInfo = ref({
@@ -212,11 +198,6 @@ const saveProfile = () => {
 </script>
 
 <style lang="scss">
-// Import theme variables if available, otherwise define basics
-// Assume variables like $primary-color, $bg-color, $text-color etc. exist
-// @import '../../styles/theme';
-
-// Define fallback variables if theme is not imported
 $primary-color: #1f78ff; // Example primary color
 $primary-color-light: #e6f0ff;
 $bg-color: #f7f8fa; // Light background
@@ -278,14 +259,14 @@ $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
      // Improve alignment and spacing for labels
-    ::v-deep(.nut-cell__title) {
+    .nut-cell__title {
        flex: 0 0 90px; // Fixed width for labels
        font-weight: 500;
        color: $text-color;
        font-size: 15px;
        padding-right: $spacing-md;
     }
-     ::v-deep(.nut-cell__value) {
+    .nut-cell__value {
        flex: 1;
        text-align: right; // Align input content to the right
     }
@@ -295,10 +276,11 @@ $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
        padding-top: $spacing-lg;
        padding-bottom: $spacing-lg;
        align-items: center; // Vertically center avatar content
-        ::v-deep(.nut-cell__value) {
-          display: flex;
-          justify-content: flex-end;
-       }
+    }
+    
+    &.avatar-item .nut-cell__value {
+       display: flex;
+       justify-content: flex-end;
     }
   }
 }
@@ -370,62 +352,68 @@ $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .form-input {
-  ::v-deep(.input-text) { // Target NutUI's input text class
-    text-align: right; // Align input text
-    font-size: 15px;
-    color: $text-color;
-    padding: $spacing-sm 0; // Add some padding for better touch area if needed
-    &::placeholder {
-       color: $text-color-placeholder;
-    }
-  }
-   border: none; // Remove default borders if any
-   background-color: transparent;
+  border: none; // Remove default borders if any
+  background-color: transparent;
+}
+
+.form-input .input-text { // Target NutUI's input text class
+  text-align: right; // Align input text
+  font-size: 15px;
+  color: $text-color;
+  padding: $spacing-sm 0; // Add some padding for better touch area if needed
+}
+
+.form-input .input-text::placeholder {
+  color: $text-color-placeholder;
 }
 
 .form-radio-group {
    justify-content: flex-end; // Align radios to the right
-   .form-radio-button {
-     ::v-deep(.nut-radio__button) { // Target NutUI's button style
-       border-radius: $border-radius-round;
-       border: 1px solid $border-color;
-       background-color: #fff;
-       color: $text-color-secondary;
-       padding: 4px 12px;
-       transition: all 0.2s ease;
-     }
-     ::v-deep(.nut-radio__button--active) {
-        border-color: $primary-color;
-        background-color: $primary-color-light;
-        color: $primary-color;
-        font-weight: 500;
-     }
-     &:not(:last-child) {
-       margin-right: $spacing-sm;
-     }
-   }
+}
+
+.form-radio-group .form-radio-button .nut-radio__button { // Target NutUI's button style
+  border-radius: $border-radius-round;
+  border: 1px solid $border-color;
+  background-color: #fff;
+  color: $text-color-secondary;
+  padding: 4px 12px;
+  transition: all 0.2s ease;
+}
+
+.form-radio-group .form-radio-button .nut-radio__button--active {
+  border-color: $primary-color;
+  background-color: $primary-color-light;
+  color: $primary-color;
+  font-weight: 500;
+}
+
+.form-radio-group .form-radio-button:not(:last-child) {
+  margin-right: $spacing-sm;
 }
 
 .form-textarea {
-  ::v-deep(.nut-textarea__textarea) {
-     text-align: left; // Textarea usually aligned left
-     font-size: 15px;
-     color: $text-color;
-     background-color: #fdfdfd; // Slightly different bg for textarea
-     border: 1px solid $border-color;
-     border-radius: $border-radius-base;
-     padding: $spacing-sm $spacing-md;
-     min-height: 80px; // Ensure a minimum height
-     &::placeholder {
-       color: $text-color-placeholder;
-     }
-  }
-   ::v-deep(.nut-textarea__limit) {
-     text-align: right; // Align limit count
-   }
-   // Adjust positioning within the form item
-   width: 100%; // Take full width in its cell
-   margin-top: $spacing-sm; // Add margin if label is above
+  // Adjust positioning within the form item
+  width: 100%; // Take full width in its cell
+  margin-top: $spacing-sm; // Add margin if label is above
+}
+
+.form-textarea .nut-textarea__textarea {
+  text-align: left; // Textarea usually aligned left
+  font-size: 15px;
+  color: $text-color;
+  background-color: #fdfdfd; // Slightly different bg for textarea
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+  padding: $spacing-sm $spacing-md;
+  min-height: 80px; // Ensure a minimum height
+}
+
+.form-textarea .nut-textarea__textarea::placeholder {
+  color: $text-color-placeholder;
+}
+
+.form-textarea .nut-textarea__limit {
+  text-align: right; // Align limit count
 }
 
 // --- Actions ---

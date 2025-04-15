@@ -7,20 +7,23 @@ $text-color-placeholder: #c0c4cc;
 $border-color: #ebedf0;
 $border-radius-lg: 12px;
 $border-radius-md: 8px;
+$spacing-xs: 4px;
 $spacing-sm: 8px;
 $spacing-md: 16px;
 $spacing-lg: 24px;
 $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.06);
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+$transition-fast: 0.2s ease;
 
-.my-container {
+.my-view {
   background-color: $bg-color;
   min-height: 100vh;
   padding: $spacing-md;
   box-sizing: border-box;
 }
 
-// --- Profile Header ---
-.profile-header-card {
+.person-view {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,105 +32,151 @@ $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.06);
   padding: $spacing-lg $spacing-md;
   margin-bottom: $spacing-lg;
   box-shadow: $shadow-light;
-  cursor: pointer; // Indicate clickability
-  transition: box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+  transition: all $transition-fast;
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: $primary-color;
+  }
 
   &:active {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); // Press effect
+    transform: translateY(1px);
   }
 }
 
-.profile-info {
-  display: flex;
-  align-items: center;
-  flex-grow: 1; // Allow text to take available space
-  margin-right: $spacing-md; // Space between text and arrow
-}
-
-.profile-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-right: $spacing-md;
-  overflow: hidden; // Ensure image fits circle
-  border: 2px solid $bg-color; // Optional border
-  background-color: #eee; // Placeholder bg
-}
-
-.profile-text {
+.person-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: $spacing-md 0;
 }
 
-.profile-name {
-  font-size: 18px;
+.person-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: $spacing-md;
+  overflow: hidden; // Ensure image fits circle
+  border: 2px solid $primary-color; // Colored border
+  background-color: #eee; // Placeholder bg
+  
+  image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.person-name {
+  font-size: 20px;
   font-weight: bold;
   color: $text-color;
-  margin-bottom: 4px;
+  margin-bottom: $spacing-xs;
 }
 
-.profile-desc {
-  font-size: 13px;
+.person-desc {
+  font-size: 14px;
   color: $text-color-secondary;
 }
 
-.feature-sections {
-  .section-card {
+.other-view {
+  .practice-view,
+  .service-view,
+  .list-view {
     background-color: $card-bg-color;
     border-radius: $border-radius-md;
-    margin-bottom: $spacing-md;
+    margin-bottom: $spacing-lg;
     box-shadow: $shadow-light;
     overflow: hidden; // Ensure cells conform to border radius
-
-    // Style NutUI cell group title
-    ::v-deep(.nut-cell-group__title) {
-       padding: $spacing-md $spacing-md $spacing-sm;
-       font-size: 14px;
-       color: $text-color-secondary;
-       font-weight: 500;
-       background-color: transparent; // Use card background
+    transition: transform $transition-fast;
+    
+    &:active {
+      transform: scale(0.99);
     }
+  }
 
-    // Style NutUI cells within the group
-    .nut-cell {
-      padding: 14px $spacing-md; // Adjust cell padding
-      align-items: center; // Vertically align icon and text
-
-      // Style cell title
-      ::v-deep(.nut-cell__title) {
-        font-size: 15px;
-        color: $text-color;
+  .nut-cell {
+    padding: 16px $spacing-md; // Adjust cell padding
+    align-items: center; // Vertically align icon and text
+    position: relative;
+    
+    &:active {
+      background-color: rgba($primary-color, 0.05);
+    }
+    
+    &::after {
+      border-bottom: none;
+    }
+  }
+  
+  .nut-cell__title {
+    font-size: 16px;
+    font-weight: 500;
+    color: $text-color;
+  }
+  
+  .nut-grid {
+    padding: $spacing-sm 0 $spacing-md;
+  }
+  
+  .nut-grid-item {
+    padding: $spacing-sm 0;
+    
+    &:active {
+      opacity: 0.8;
+    }
+  }
+  
+  .nut-grid-item__text {
+    margin-top: $spacing-xs;
+    font-size: 14px;
+    color: $text-color-secondary;
+  }
+  
+  .nut-avatar {
+    background-color: rgba($primary-color, 0.1);
+    box-shadow: 0 2px 6px rgba($primary-color, 0.2);
+    transition: transform $transition-fast;
+    
+    &:active {
+      transform: scale(1.1);
+    }
+    
+    image {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  .list-view {
+    .nut-cell:not(:last-child) {
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        left: $spacing-md;
+        right: $spacing-md;
+        bottom: 0;
+        height: 1px;
+        background-color: $border-color;
+        transform: scaleY(0.5);
       }
-
-      // Style cell icon container
-      ::v-deep(.nut-cell__icon) {
-        margin-right: $spacing-sm; // Space between icon and title
-        display: flex;
-        align-items: center;
-        font-size: 20px; // Adjust icon size if needed via font-size
-      }
-
-      // Add subtle hover/active effect (optional)
-      &:active {
-        background-color: #f9f9f9;
-      }
-
-       // Remove default border if NutUI adds one
-       &::after {
-          border-bottom: none;
-       }
-
-       // Add custom border if needed (e.g., between items but not after last)
-       // &:not(:last-child)::after {
-       //   content: '';
-       //   position: absolute;
-       //   left: $spacing-md;
-       //   right: $spacing-md;
-       //   bottom: 0;
-       //   height: 1px;
-       //   background-color: $border-color;
-       //   transform: scaleY(0.5);
-       // }
+    }
+    
+    .nut-cell:last-child {
+      color: #ff4d4f;
+      font-weight: 500;
     }
   }
 }

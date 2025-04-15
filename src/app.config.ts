@@ -5,6 +5,7 @@ export default {
     'pages/topic/index',
     'pages/course/index',
     'pages/course/list',
+    'pages/course/video',
     'pages/comment/index',
     'pages/topic/list',
     'pages/services/index',

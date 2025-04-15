@@ -63,7 +63,7 @@
 
     <!-- 动作列表内容 -->
     <view v-if="index === 0" class="action-list">
-      <view class="action-item" v-for="(item, actionIdx) in actionList" :key="actionIdx">
+      <view class="action-item" v-for="(item, actionIdx) in actionList" :key="actionIdx" @click="playVideo(item)">
         <image class="action-image" :src="item.img" mode="aspectFill"></image>
         <view class="action-info">
           <view class="action-title">
@@ -142,6 +142,14 @@ const navToMoreComment = (id: string) => {
   })
 }
 
+// 播放视频方法
+const playVideo = (item: any) => {
+  // 跳转到视频播放页面
+  Taro.navigateTo({
+    url: `/pages/course/video?video=${encodeURIComponent(item.video)}&title=${encodeURIComponent(item.title)}&time=${encodeURIComponent(item.time)}`
+  })
+}
+
 const scrollToSection = (idx: number) => {
   index.value = idx;
 
@@ -186,22 +194,26 @@ onMounted(() => {
             id: 1,
             title: '三角拉伸 左',
             time: "5\'\'",
-            img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif'
+            img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif',
+            video: 'https://media.w3.org/2010/05/sintel/trailer.mp4'
           }, {
             id: 2,
             title: '三角拉伸 右',
             time: "5\'\'",
-            img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif'
+            img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif',
+            video: 'https://media.w3.org/2010/05/bunny/trailer.mp4'
           }, {
             id: 3,
             title: '燕式平衡 左',
             time: "5\'\'",
-            img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif'
+            img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif',
+            video: 'https://media.w3.org/2010/05/sintel/trailer.mp4'
           }, {
             id: 4,
             title: '燕式平衡 右',
             time: "5\'\'",
-            img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif'
+            img: 'https://i0.hdslb.com/bfs/archive/a2f17b6cd62da85a20570a78c08e5f15e66a8581.jpg@672w_378h_1c_!web-search-common-cover.avif',
+            video: 'https://media.w3.org/2010/05/bunny/trailer.mp4'
           },
         ];
         commentList.value = [
